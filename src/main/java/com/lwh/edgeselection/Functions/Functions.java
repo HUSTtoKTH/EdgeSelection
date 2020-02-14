@@ -5,6 +5,7 @@ import com.lwh.edgeselection.domain.EIS;
 import com.lwh.edgeselection.domain.ServiceForm;
 import com.lwh.edgeselection.domain.ServiceTable;
 
+import java.math.BigInteger;
 import java.util.*;
 
 /**
@@ -18,6 +19,9 @@ public class Functions {
      */
     public static void main(String[] args) {
 //        List<int[]> x = Combination(10);
+        BigInteger min = BigInteger.ZERO;
+        min.add(BigInteger.ONE);
+        String binary = min.toString(2);
         System.out.println();
     }
 
@@ -92,7 +96,7 @@ public class Functions {
         //number of possible combination ：2^n
         int nbit = 1<<n;
         System.out.println("number of possible combination："+nbit);
-        List<int[]> results = new ArrayList<>();
+        List<int[]> results = new LinkedList<>();
         for(int i=0 ; i<nbit ; i++) {                        //结果有nbit个。输出结果从数字小到大输出：即输出0,1,2,3,....2^n。
             int[] result = new int[n];
             for(int j=0; j<n ; j++) {                        //每个数二进制最多可以左移n次，即遍历完所有可能的变化新二进制数值了
@@ -106,13 +110,12 @@ public class Functions {
         return results;
     }
 
-    public static List<ServiceTable> CombinationResult(List<ServiceForm> table) {
+    public static void CombinationResult(List<ServiceForm> table) {
         //number of elements
         int n = table.size();
         //number of possible combination ：2^n
         int nbit = 1<<n;
         System.out.println("number of possible combination："+nbit);
-        List<ServiceTable> results = new ArrayList<>();
         for(int i=0 ; i<nbit ; i++) {                        //结果有nbit个。输出结果从数字小到大输出：即输出0,1,2,3,....2^n。
             ServiceTable result = new ServiceTable();
             for(int j=0; j<n ; j++) {                        //每个数二进制最多可以左移n次，即遍历完所有可能的变化新二进制数值了
@@ -122,9 +125,8 @@ public class Functions {
                     result.add(serviceForm);
                 }
             }
-            results.add(result);
+
         }
-        return results;
     }
 
     public static ServiceTable binaryToServiceTable(int[] binary, List<ServiceForm> serviceFormList) {

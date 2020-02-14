@@ -2,6 +2,7 @@ package com.lwh.edgeselection.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -151,6 +152,22 @@ public class Application {
 
     public void setNum_CSP_per_EIS(int num_CSP_per_EIS) {
         this.num_CSP_per_EIS = num_CSP_per_EIS;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Application" + getId());
+//        sb.append(", capacity: "+ getCapacity());
+        sb.append(", latency: "+getLatency());
+        sb.append(", EIS: "+getNum_EIS_per_Country());
+        sb.append(", CSP: "+ getNum_CSP_per_EIS());
+        sb.append(", bandwidth: "+ getBandwidth());
+        sb.append(", Cpu_frequency: "+ getCpu_frequency());
+        sb.append(", Disk_size: "+ getDisk_size());
+        sb.append(", Mem_size: "+ getMem_size());
+        sb.append(", Num_cpus: "+ getNum_cpus());
+        return sb.toString();
     }
 }
 

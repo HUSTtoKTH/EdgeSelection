@@ -12,13 +12,14 @@ public interface EISRepository extends JpaRepository<EIS,Long> {
 
     @Query("select s " +
             "FROM EIS s " +
-            "WHERE s.instance_num >= 1 AND " +
+            "WHERE " +
+//            "s.instance_num >= 1 AND " +
             "s.bandwidth >= ?1 AND " +
             "s.cpu_frequency >= ?2 AND " +
             "s.disk_size >= ?3 AND " +
             "s.mem_size >= ?4 AND " +
             "s.num_cpus >= ?5")
-    List<EIS> finbEISByCapability(double bandwidth, double cpu_frequency, double disk_size, double mem_size, int num_cpus);
+    List<EIS> findEISByCapability(double bandwidth, double cpu_frequency, double disk_size, double mem_size, int num_cpus);
 
     List<EIS> findByCapacityGreaterThanEqual(double capacity);
 }

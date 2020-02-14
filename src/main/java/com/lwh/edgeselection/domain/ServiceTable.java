@@ -41,6 +41,15 @@ public class ServiceTable {
         return checkNumberOfEIS(numOfEIS) && checkNumberOfCSP(numOfCSP);
     }
 
+    public boolean checkCSP(List<CSP> likeCSP) {
+        for(CSP csp:likeCSP){
+            if(!usedCSP.contains(csp)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public double calculateCost(){
         double cost = 0;
         for(EIS eis:usedEIS){
@@ -96,4 +105,6 @@ public class ServiceTable {
         }
         return sb.toString();
     }
+
+
 }
