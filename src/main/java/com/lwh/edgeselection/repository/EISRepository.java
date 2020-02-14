@@ -19,4 +19,6 @@ public interface EISRepository extends JpaRepository<EIS,Long> {
             "s.mem_size >= ?4 AND " +
             "s.num_cpus >= ?5")
     List<EIS> finbEISByCapability(double bandwidth, double cpu_frequency, double disk_size, double mem_size, int num_cpus);
+
+    List<EIS> findByCapacityGreaterThanEqual(double capacity);
 }

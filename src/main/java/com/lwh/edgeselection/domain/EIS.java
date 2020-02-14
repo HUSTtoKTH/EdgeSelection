@@ -13,6 +13,7 @@ public class EIS implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    private double capacity;
     private int instance_num;
     private int cluster_num;
     private double cost_second;
@@ -43,6 +44,22 @@ public class EIS implements Serializable {
                     @JoinColumn(name = "csp_id", referencedColumnName = "id",
                             nullable = false, updatable = false)})
     private Set<CSP> csps = new HashSet<>();
+
+    public EIS() {
+    }
+
+    public EIS(double capacity, double cost_second) {
+        this.capacity = capacity;
+        this.cost_second = cost_second;
+    }
+
+    public double getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(double capacity) {
+        this.capacity = capacity;
+    }
 
     public Long getId() {
         return id;

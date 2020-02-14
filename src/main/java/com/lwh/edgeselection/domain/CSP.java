@@ -30,6 +30,13 @@ public class CSP implements Serializable {
                             nullable = false, updatable = false)})
     private Set<Area> areas = new HashSet<>();
 
+    public CSP() {
+    }
+
+    public CSP(double cost) {
+        this.cost_scond = cost;
+    }
+
     public Long getId() {
         return id;
     }

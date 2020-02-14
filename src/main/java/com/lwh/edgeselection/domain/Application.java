@@ -4,11 +4,18 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+
+@Entity
+@Table(name = "applications")
 public class Application {
-    private List<Area> areas;
-    private List<CSP> csps;
-    private List<CSP> nocsps;
-    private List<EIS> services;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+//    private List<Area> areas;
+//    private List<CSP> csps;
+//    private List<CSP> nocsps;
+//    private List<EIS> services;
     private int num_cpus;
     private double bandwidth;
     private double cpu_frequency;
@@ -19,63 +26,35 @@ public class Application {
     private String fpga;
     private String special;
     private double latency;
-    private String[] objectives;
+//    private String[] objectives;
+    private int num_EIS_per_Country;
+    private int num_CSP_per_EIS;
+    private double capacity;
 
-
-    public String[] getObjectives() {
-        return objectives;
+    public Application() {
     }
 
-    public void setObjectives(String[] objectives) {
-        this.objectives = objectives;
-    }
-
-    public double getLatency() {
-        return latency;
-    }
-
-    public void setLatency(double latency) {
+    public Application(int num_EIS_per_Country,int num_CSP_per_EIS, double capacity, double latency) {
+        this.num_EIS_per_Country = num_EIS_per_Country;
+        this.num_CSP_per_EIS = num_CSP_per_EIS;
+        this.capacity = capacity;
         this.latency = latency;
     }
 
-    public double getReliability() {
-        return reliability;
+    public double getCapacity() {
+        return capacity;
     }
 
-    public void setReliability(double reliability) {
-        this.reliability = reliability;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
-    public List<Area> getAreas() {
-        return areas;
+    public Long getId() {
+        return id;
     }
 
-    public void setAreas(List<Area> areas) {
-        this.areas = areas;
-    }
-
-    public List<CSP> getCsps() {
-        return csps;
-    }
-
-    public void setCsps(List<CSP> csps) {
-        this.csps = csps;
-    }
-
-    public List<CSP> getNocsps() {
-        return nocsps;
-    }
-
-    public void setNocsps(List<CSP> nocsps) {
-        this.nocsps = nocsps;
-    }
-
-    public List<EIS> getServices() {
-        return services;
-    }
-
-    public void setServices(List<EIS> services) {
-        this.services = services;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getNum_cpus() {
@@ -118,6 +97,14 @@ public class Application {
         this.mem_size = mem_size;
     }
 
+    public double getReliability() {
+        return reliability;
+    }
+
+    public void setReliability(double reliability) {
+        this.reliability = reliability;
+    }
+
     public String getGpu() {
         return gpu;
     }
@@ -140,6 +127,30 @@ public class Application {
 
     public void setSpecial(String special) {
         this.special = special;
+    }
+
+    public double getLatency() {
+        return latency;
+    }
+
+    public void setLatency(double latency) {
+        this.latency = latency;
+    }
+
+    public int getNum_EIS_per_Country() {
+        return num_EIS_per_Country;
+    }
+
+    public void setNum_EIS_per_Country(int num_EIS_per_Country) {
+        this.num_EIS_per_Country = num_EIS_per_Country;
+    }
+
+    public int getNum_CSP_per_EIS() {
+        return num_CSP_per_EIS;
+    }
+
+    public void setNum_CSP_per_EIS(int num_CSP_per_EIS) {
+        this.num_CSP_per_EIS = num_CSP_per_EIS;
     }
 }
 

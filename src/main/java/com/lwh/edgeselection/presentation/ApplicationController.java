@@ -41,13 +41,13 @@ public class ApplicationController {
         return "applicationinput";
     }
 
-    @PostMapping("/applicationinput")
-    public void newCSP(Application application, Model model) {
-        List<CSP> csps = cspService.filterArea(application.getAreas());
-        List<EIS> eisresult = eisService.filterCSP(csps, application.getNocsps());
-        model.addAttribute("results", eisresult);
-        System.out.println(eisresult);
-    }
+//    @PostMapping("/applicationinput")
+//    public void newCSP(Application application, Model model) {
+//        List<CSP> csps = cspService.filterArea(application.getAreas());
+//        List<EIS> eisresult = eisService.filterCSP(csps, application.getNocsps());
+//        model.addAttribute("results", eisresult);
+//        System.out.println(eisresult);
+//    }
 
 
 }

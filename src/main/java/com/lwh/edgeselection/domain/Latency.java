@@ -27,6 +27,19 @@ public class Latency implements Serializable {
     public Latency() {
     }
 
+    public Latency(Long areaId, Long cspId, Long serviceId, double delay) {
+        this.areaId = areaId;
+        this.cspId = cspId;
+        this.serviceId = serviceId;
+        this.delay = delay;
+    }
+
+
+    public Latency(Long areaId, Long cspId, Long serviceId) {
+        this.areaId = areaId;
+        this.cspId = cspId;
+        this.serviceId = serviceId;
+    }
 
     public Latency(Long areaId, Long cspId, Long serviceId, String area_name,String csp_name, String service_name) {
         this.areaId = areaId;
