@@ -185,10 +185,11 @@
     </state>
     <state x="3222" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680/1920.0.2560.1400@1920.0.2560.1400" timestamp="1581084487216" />
     <state x="1302" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1581691874951" />
-    <state x="756" y="225" key="CommitChangelistDialog2" timestamp="1581694015432">
+    <state x="756" y="225" key="CommitChangelistDialog2" timestamp="1582112709042">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="756" y="225" key="CommitChangelistDialog2/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1581694015432" />
+    <state x="756" y="225" key="CommitChangelistDialog2/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582112709042" />
     <state x="1010" y="400" key="FileChooserDialogImpl" timestamp="1581435929397">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -298,18 +299,20 @@
     </state>
     <state x="2573" y="258" key="SettingsEditor/0.0.1280.680/1920.0.2560.1400@1920.0.2560.1400" timestamp="1581084067250" />
     <state x="653" y="258" key="SettingsEditor/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1581588443335" />
-    <state x="772" y="371" key="Vcs.Push.Dialog.v2" timestamp="1581694026256">
+    <state x="772" y="371" key="Vcs.Push.Dialog.v2" timestamp="1582112742949">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="772" y="371" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1581694026256" />
+    <state x="772" y="371" key="Vcs.Push.Dialog.v2/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582112742949" />
     <state x="2807" y="486" key="com.intellij.ide.util.TipDialog" timestamp="1580395236558">
       <screen x="1920" y="0" width="2560" height="1400" />
     </state>
     <state x="2807" y="486" key="com.intellij.ide.util.TipDialog/0.0.1280.680/1920.0.2560.1400@1920.0.2560.1400" timestamp="1580395236558" />
-    <state x="1014" y="598" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581675558851">
+    <state x="1014" y="598" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582112726545">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1014" y="598" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1581675558851" />
+    <state x="1014" y="598" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582112726545" />
     <state x="0" y="40" width="1096" height="984" key="dock-window-1" timestamp="1581323325011">
       <screen x="0" y="0" width="1080" height="1880" />
     </state>
