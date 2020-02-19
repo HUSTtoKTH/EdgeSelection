@@ -1,9 +1,8 @@
 package com.lwh.edgeselection.Functions;
 
-import com.lwh.edgeselection.domain.CSP;
-import com.lwh.edgeselection.domain.EIS;
-import com.lwh.edgeselection.domain.ServiceForm;
-import com.lwh.edgeselection.domain.ServiceTable;
+import com.lwh.edgeselection.domain.*;
+import com.lwh.edgeselection.repository.*;
+import org.apache.commons.lang3.RandomUtils;
 
 import java.math.BigInteger;
 import java.util.*;
@@ -19,12 +18,23 @@ public class Functions {
      */
     public static void main(String[] args) {
 //        List<int[]> x = Combination(10);
-        BigInteger min = BigInteger.ZERO;
-        min.add(BigInteger.ONE);
-        String binary = min.toString(2);
-        System.out.println();
+       containsNearbyDuplicate(new int[]{1,0,1,1},1);
     }
 
+    public static boolean containsNearbyDuplicate(int[] nums, int k) {
+        Map<Integer, Integer> map =  new HashMap<>();
+        for(int i = 0; i < nums.length; i++){
+            Integer pre = map.get(nums[i]);
+            if(pre != null){
+                if(i - pre <= k){
+                    return true;
+                }
+            }else{
+                map.put(nums[i], i);
+            }
+        }
+        return false;
+    }
 
 
     public static boolean checkReliability(ServiceTable serviceTable, int numOfEIS, int numOfCSP){
@@ -140,8 +150,130 @@ public class Functions {
     }
 
 
-//    public static void generate() {
-//
-//    }
-//    need to filter unsatisfied reliability
+    public static void generateEIS(EISRepository eisRepository, AreaRepository areaRepository,
+                                LatencyRepository latencyRepository, CSPRepository cspRepository) {
+//            generate EISs
+        Area testArea = new Area("test");
+        areaRepository.save(testArea);
+        List<CSP> csps = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            CSP csp = new CSP(Math.random() * 10);
+            cspRepository.save(csp);
+            csp.getAreas().add(testArea);
+            cspRepository.save(csp);
+            csps.add(csp);
+        }
+        for(int i = 0; i < 30; i++) {
+            EIS eis = new EIS(Math.random(), Math.random() * 10);
+            //                bandwidth[100MB, 10GB]
+            eis.setBandwidth(RandomUtils.nextDouble(100, 10000));
+            //                cpu cores [1, 8]
+            eis.setNum_cpus(RandomUtils.nextInt(1, 8));
+            //                cpu frequency [1.8, 4]
+            eis.setCpu_frequency(RandomUtils.nextDouble(1.8, 4));
+            //                disk size [100GB, 10000GB]
+            eis.setDisk_size(RandomUtils.nextInt(100, 10000));
+            //                memory size [10MB, 10GB]
+            eis.setMem_size(RandomUtils.nextInt(10, 10000));
+            eisRepository.save(eis);
+            for (CSP csp : csps) {
+                if (Math.random() > 0.5) {
+                    eis.getCsps().add(csp);
+                    Latency latency = new Latency(testArea.getId(), csp.getId(), eis.getId(), Math.random() * 30 + 20);
+                    latencyRepository.save(latency);
+                }
+            }
+            eisRepository.save(eis);
+        }
+    }
+
+
+    public static void generateApp(CSPRepository cspRepository, ApplicationRepository applicationRepository,
+                                PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository) {
+        //generate Applications
+        List<CSP> csps = cspRepository.findAll();
+        for(int i = 0; i < 20; i++){
+            Application application = new Application(1+(int)(Math.random()*3),1+(int)(Math.random()*3), Math.random(),Math.random()*30 + 20);
+//            setCPUIntensive(application);
+            if(Math.random() < 0.33){
+                setCPUIntensive(application);
+            }else {
+                if(Math.random() < 0.5){
+                    setDataIntensive(application);
+                }else {
+                    setCommunicationIntensive(application);
+                }
+            }
+            applicationRepository.save(application);
+            for(CSP csp:csps){
+                if(Math.random() < 0.33){
+                    preferedCSPRepository.save(new PreferedCSP(application.getId(),csp.getId()));
+                }else {
+                    if(Math.random() < 0.5){
+                        unpreferedCSPRepository.save(new UnpreferedCSP(application.getId(), csp.getId()));
+                    }
+                }
+            }
+        }
+    }
+
+    private static void setAppType(Application application, double bandwidth, int cpu_num, double cpu_frequency, int disk_size, int memory){
+//                bandwidth[100MB, 10GB]
+        application.setBandwidth(bandwidth);
+//                cpu cores [1, 8]
+        application.setNum_cpus(cpu_num);
+//                cpu frequency [1.8, 4]
+        application.setCpu_frequency(cpu_frequency);
+//                disk size [100GB, 10000GB]
+        application.setDisk_size(disk_size);
+//                memory size [10MB, 10GB]
+        application.setMem_size(memory);
+    }
+
+    private static void setCPUIntensive(Application application){
+        setAppType(application,
+                //                bandwidth[100MB, 1GB]
+                RandomUtils.nextDouble(100, 1000),
+                //                cpu cores [4, 8]
+                RandomUtils.nextInt(4, 8),
+                //                cpu frequency [1.8, 4]
+                RandomUtils.nextDouble(1.8, 4),
+                //                disk size [2GB, 100GB]
+                RandomUtils.nextInt(2, 100),
+                //                memory size [10MB, 5GB]
+                RandomUtils.nextInt(10, 5000)
+                );
+    }
+
+    private static void setDataIntensive(Application application){
+        setAppType(application,
+                //                bandwidth[100MB, 2GB]
+                RandomUtils.nextDouble(100, 2000),
+                //                cpu cores [1, 4]
+                RandomUtils.nextInt(1, 4),
+                //                cpu frequency [1.8, 2.2]
+                RandomUtils.nextDouble(1.8, 2.2),
+                //                disk size [100GB, 10000GB]
+                RandomUtils.nextInt(100, 10000),
+                //                memory size [100MB, 10GB]
+                RandomUtils.nextInt(100, 10000)
+        );
+    }
+
+    private static void setCommunicationIntensive(Application application){
+        setAppType(application,
+                //                bandwidth[100MB, 10 GB]
+                RandomUtils.nextDouble(100, 10000),
+                //                cpu cores [1, 4]
+                RandomUtils.nextInt(1, 4),
+                //                cpu frequency [1.8, 2.2]
+                RandomUtils.nextDouble(1.8, 2.2),
+                //                disk size [2GB, 20GB]
+                RandomUtils.nextInt(2, 20),
+                //                memory size [100MB, 1GB]
+                RandomUtils.nextInt(100, 1000)
+        );
+    }
+
+
 }

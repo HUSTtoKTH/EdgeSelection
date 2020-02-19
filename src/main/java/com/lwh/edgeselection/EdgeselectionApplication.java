@@ -27,21 +27,6 @@ public class EdgeselectionApplication {
                                          TableRepository tableRepository, ApplicationRepository applicationRepository,
                                          PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository) {
         return args -> {
-
-//            List<ServiceForm> testTable = tableRepository.retriveAllServiceByAreasIn(Arrays.asList("Sweden","Danmark"));
-//            List<EIS> testEIS = eisService.findByCapacity(-1,-1,-1,-1,-1);
-//            List<CSP> unlikeCSP= new ArrayList<>();
-//            unlikeCSP.add(cspRepository.findById(5));
-//            Functions.filterTable(testTable,unlikeCSP,testEIS,30);
-//            List<List<ServiceForm>> allcombination = Functions.CombinationResult(testTable);
-//            int i = 0;
-//            for(List<ServiceForm> combination : allcombination){
-//                System.out.println(i);
-//                i++;
-//                System.out.println(Functions.calculateCost(combination));
-//            }
-//            System.out.println("done");
-//
 //            cspRepository.findByAreasInAndIdIsNotIn()
 //            Area area1 = new Area("Danmark");
 //            Area area2 = new Area("Sweden");
@@ -52,57 +37,9 @@ public class EdgeselectionApplication {
 //                areaRepository.save(area);
 //            }
 
-//            generate EISs
-//            Area testArea = new Area("test");
-//            areaRepository.save(testArea);
-//            List<CSP> csps = new ArrayList<>();
-//            for(int i = 0; i < 10; i++){
-//                CSP csp = new CSP(Math.random()*10);
-//                cspRepository.save(csp);
-//                csp.getAreas().add(testArea);
-//                cspRepository.save(csp);
-//                csps.add(csp);
-//            }
-//            for(int i = 0; i < 50; i++){
-//                EIS eis = new EIS(Math.random(), Math.random()*10);
-//                eis.setBandwidth((int)(Math.random()*90)+10);
-//                eis.setNum_cpus(1+(int)(Math.random()*16));
-//                eis.setCpu_frequency(Math.random()*4);
-//                eis.setDisk_size(500+(int)(Math.random()*499500));
-//                eis.setMem_size(1000+(int)(Math.random()*29000));
-//                eisRepository.save(eis);
-//                for(CSP csp:csps){
-//                    if(Math.random() > 0.5){
-//                        eis.getCsps().add(csp);
-//                        Latency latency = new Latency(testArea.getId(), csp.getId(), eis.getId(), Math.random()*30 + 20);
-//                        latencyRepository.save(latency);
-//                    }
-//                }
-//                eisRepository.save(eis);
-//            }
+//            Functions.generateEIS(eisRepository,areaRepository,latencyRepository,cspRepository);
 
-//            generate Applications
-//            List<CSP> csps = cspRepository.findAll();
-//            for(int i = 0; i < 20; i++){
-//                Application application = new Application(1+(int)(Math.random()*3),1+(int)(Math.random()*3), Math.random(),Math.random()*30 + 20);
-//                application.setBandwidth((int)(Math.random()*90)+10);
-//                application.setNum_cpus(1+(int)(Math.random()*16));
-//                application.setCpu_frequency(Math.random()*4);
-//                application.setDisk_size(500+(int)(Math.random()*499500));
-//                application.setMem_size(1000+(int)(Math.random()*29000));
-//                applicationRepository.save(application);
-//                for(CSP csp:csps){
-//                    if(Math.random() < 0.33){
-//                        preferedCSPRepository.save(new PreferedCSP(application.getId(),csp.getId()));
-//                    }else {
-//                        if(Math.random() < 0.5){
-//                            unpreferedCSPRepository.save(new UnpreferedCSP(application.getId(), csp.getId()));
-//                        }
-//                    }
-//                }
-//            }
-
-
+//            Functions.generateApp(cspRepository,applicationRepository,preferedCSPRepository,unpreferedCSPRepository);
 
 //Selection By abstract
 //            List<Application> applications = applicationRepository.findAll();
