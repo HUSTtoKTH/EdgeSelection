@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CSPRepository extends JpaRepository<CSP,Long> {
-    List<CSP> findByAreasInAndIdIsNotIn(List<Area> areas, List<Long> unpreferedCSPIds);
-    List<CSP> findByServicesIn(List<EIS> eiss);
+    List<CSP> findByCspareasInAndIdIsNotIn(Iterable<Area> areas, Iterable<Long> unpreferedCSPIds);
+    List<CSP> findByServicesIn(Iterable<EIS> eiss);
 
-    List<CSP> findCSPByServicesIn(List<EIS> eiss);
+    List<CSP> findCSPByServicesIn(Iterable<EIS> eiss);
 
-    List<CSP> findCSPByAreasIn(List<Area> areas);
+    List<CSP> findCSPByCspareasIn(Iterable<Area> areas);
 
     CSP findById(long id);
 

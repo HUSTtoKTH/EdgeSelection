@@ -37,27 +37,27 @@ public class EdgeController {
 //    }
 
     @GetMapping("/cspinput")
-    public String cspInputPage(Model model, HttpSession session) {
+    public String servicecspInput(Model model, HttpSession session) {
         List<Area> areaList = areaService.getAll();
         model.addAttribute("areaList", areaList);
         return "cspinput";
     }
 
     @PostMapping("/cspinput")
-    public String newCSP(CSP csp, Model model) {
+    public String servicecspInput(CSP csp, Model model) {
         cspService.save(csp);
         return "redirect:/cspselection";
     }
 
     @GetMapping("/cspselection")
-    public String cspSelectionPage(Model model) {
+    public String servicecspSelection(Model model) {
         List<CSP> CSPList = cspService.getAll();
         model.addAttribute("CSPList",CSPList);
         return "cspselection";
     }
 
     @PostMapping("/cspselection")
-    public String postCSP(EIS eis, final RedirectAttributes attributes) {
+    public String servicecspSelection(EIS eis, RedirectAttributes attributes) {
         Set<CSP> CSPSelect = eis.getCsps();
         if (CSPSelect != null) {
             attributes.addAttribute("csps",CSPSelect);
@@ -71,7 +71,7 @@ public class EdgeController {
 //    }
 
     @GetMapping("/service")
-    public String servicePage(@RequestParam(value = "csps")Set<CSP> CSPSelect,
+    public String serviceInput(@RequestParam(value = "csps")Set<CSP> CSPSelect,
                             Model model) {
         List<CSP> CSPList = new ArrayList<>();
         CSPList.addAll(CSPSelect);
@@ -80,7 +80,7 @@ public class EdgeController {
     }
 
     @PostMapping("/service")
-    public String postService(EIS eis, final RedirectAttributes attributes) {
+    public String serviceInput(EIS eis, final RedirectAttributes attributes) {
         EIS eis1 = eisService.save(eis);
         if (eis1 != null) {
             attributes.addAttribute("inputEIS",eis);
@@ -89,11 +89,11 @@ public class EdgeController {
     }
 
     @GetMapping("/latency")
-    public String latencyPage(@RequestParam(value = "inputEIS") EIS eis,
+    public String latencyInput(@RequestParam(value = "inputEIS") EIS eis,
                             Model model) {
         List<Latency> latencies = new ArrayList<>();
         for(CSP csp:eis.getCsps()){
-            for(Area area:csp.getAreas()){
+            for(Area area:csp.getCspareas()){
                 latencies.add(new Latency(
                     area.getId(),csp.getId(),eis.getId(),
                         area.getName(),csp.getName(),eis.getName()
@@ -107,7 +107,7 @@ public class EdgeController {
     }
 
     @PostMapping("/latency")
-    public String postLatency(LatencyListContainer form) {
+    public String latencyInput(LatencyListContainer form) {
         latencyService.saveAll(form.getLatencies());
         return "redirect:/cspselection";
     }

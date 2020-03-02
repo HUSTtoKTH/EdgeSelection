@@ -3,6 +3,7 @@ package com.lwh.edgeselection.Functions;
 import com.lwh.edgeselection.domain.*;
 import com.lwh.edgeselection.repository.*;
 import org.apache.commons.lang3.RandomUtils;
+import org.springframework.util.StopWatch;
 
 import java.math.BigInteger;
 import java.util.*;
@@ -17,24 +18,8 @@ public class Functions {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-//        List<int[]> x = Combination(10);
-       containsNearbyDuplicate(new int[]{1,0,1,1},1);
     }
 
-    public static boolean containsNearbyDuplicate(int[] nums, int k) {
-        Map<Integer, Integer> map =  new HashMap<>();
-        for(int i = 0; i < nums.length; i++){
-            Integer pre = map.get(nums[i]);
-            if(pre != null){
-                if(i - pre <= k){
-                    return true;
-                }
-            }else{
-                map.put(nums[i], i);
-            }
-        }
-        return false;
-    }
 
 
     public static boolean checkReliability(ServiceTable serviceTable, int numOfEIS, int numOfCSP){
@@ -72,7 +57,7 @@ public class Functions {
      * @return the list
      */
     public static List<ServiceForm> filterTable(List<ServiceForm> original,
-                                                List<CSP> unpreferedCSPs,
+                                                Set<CSP> unpreferedCSPs,
                                                 List<EIS> statisfiedEIS,
                                                 double latency){
         Iterator<ServiceForm> it= original.iterator();
@@ -159,11 +144,11 @@ public class Functions {
         for (int i = 0; i < 10; i++) {
             CSP csp = new CSP(Math.random() * 10);
             cspRepository.save(csp);
-            csp.getAreas().add(testArea);
+            csp.getCspareas().add(testArea);
             cspRepository.save(csp);
             csps.add(csp);
         }
-        for(int i = 0; i < 30; i++) {
+        for(int i = 0; i < 50; i++) {
             EIS eis = new EIS(Math.random(), Math.random() * 10);
             //                bandwidth[100MB, 10GB]
             eis.setBandwidth(RandomUtils.nextDouble(100, 10000));
@@ -188,13 +173,15 @@ public class Functions {
     }
 
 
-    public static void generateApp(CSPRepository cspRepository, ApplicationRepository applicationRepository,
-                                PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository) {
+    public static void generateAppRand(CSPRepository cspRepository, ApplicationRepository applicationRepository,
+                                PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository,
+                                       AreaRepository areaRepository) {
         //generate Applications
         List<CSP> csps = cspRepository.findAll();
         for(int i = 0; i < 20; i++){
             Application application = new Application(1+(int)(Math.random()*3),1+(int)(Math.random()*3), Math.random(),Math.random()*30 + 20);
 //            setCPUIntensive(application);
+            application.addAll(areaRepository.findAll());
             if(Math.random() < 0.33){
                 setCPUIntensive(application);
             }else {
@@ -204,16 +191,83 @@ public class Functions {
                     setCommunicationIntensive(application);
                 }
             }
-            applicationRepository.save(application);
             for(CSP csp:csps){
                 if(Math.random() < 0.33){
-                    preferedCSPRepository.save(new PreferedCSP(application.getId(),csp.getId()));
+                    application.addpreferedCSPs(csp);
                 }else {
                     if(Math.random() < 0.5){
-                        unpreferedCSPRepository.save(new UnpreferedCSP(application.getId(), csp.getId()));
+                        application.addunpreferedCSPs(csp);
                     }
                 }
             }
+            applicationRepository.save(application);
+
+        }
+    }
+
+    public static void generateApp1(CSPRepository cspRepository, ApplicationRepository applicationRepository,
+                                       PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository,
+                                    AreaRepository areaRepository) {
+        //generate Applications
+        List<CSP> csps = cspRepository.findAll();
+        for(int i = 0; i < 20; i++){
+            Application application = new Application(1+(int)(Math.random()*3),1+(int)(Math.random()*3), Math.random(),Math.random()*30 + 20);
+            application.addAll(areaRepository.findAll());
+            setCPUIntensive(application);
+            for(CSP csp:csps){
+                if(Math.random() < 0.33){
+                    application.addpreferedCSPs(csp);
+                }else {
+                    if(Math.random() < 0.5){
+                        application.addunpreferedCSPs(csp);
+                    }
+                }
+            }
+            applicationRepository.save(application);
+        }
+    }
+
+    public static void generateApp2(CSPRepository cspRepository, ApplicationRepository applicationRepository,
+                                    PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository,
+                                    AreaRepository areaRepository) {
+        //generate Applications
+        List<CSP> csps = cspRepository.findAll();
+        for(int i = 0; i < 20; i++){
+            Application application = new Application(1+(int)(Math.random()*3),1+(int)(Math.random()*3), Math.random(),Math.random()*30 + 20);
+            application.addAll(areaRepository.findAll());
+            setDataIntensive(application);
+            for(CSP csp:csps){
+                if(Math.random() < 0.33){
+                    application.addpreferedCSPs(csp);
+                }else {
+                    if(Math.random() < 0.5){
+                        application.addunpreferedCSPs(csp);
+                    }
+                }
+            }
+            applicationRepository.save(application);
+        }
+    }
+
+    public static void generateApp3(CSPRepository cspRepository, ApplicationRepository applicationRepository,
+                                    PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository,
+                                    AreaRepository areaRepository) {
+        //generate Applications
+        List<CSP> csps = cspRepository.findAll();
+        for(int i = 0; i < 20; i++){
+            Application application = new Application(1+(int)(Math.random()*3),1+(int)(Math.random()*3), Math.random(),Math.random()*30 + 20);
+            application.addAll(areaRepository.findAll());
+            setCommunicationIntensive(application);
+            for(CSP csp:csps){
+                if(Math.random() < 0.33){
+                    application.addpreferedCSPs(csp);
+                }else {
+                    if(Math.random() < 0.5){
+                        application.addunpreferedCSPs(csp);
+                    }
+                }
+            }
+            applicationRepository.save(application);
         }
     }
 
@@ -273,6 +327,85 @@ public class Functions {
                 //                memory size [100MB, 1GB]
                 RandomUtils.nextInt(100, 1000)
         );
+    }
+
+    public static ServiceTable bruteForce(TableRepository tableRepository,
+                                          EISRepository eisRepository,
+                                          ApplicationRepository applicationRepository,
+                                          Application application
+                                          ){
+        System.out.println("Application: "+application.getId());
+        Set<CSP> likeCSP= application.getPreferedCSPs();
+        Set<CSP> unlikeCSP= application.getUnpreferedCSPs();
+        System.out.print("Prefered CSP: ");
+        for(CSP csp:likeCSP){
+            System.out.print(csp.getId()+" ");
+        }
+        System.out.println();
+        System.out.print("UnPrefered CSP: ");
+        for(CSP csp:unlikeCSP){
+            System.out.print(csp.getId()+" ");
+        }
+        System.out.println();
+        StopWatch sw = new StopWatch("test");
+        sw.start("retrive All Service By Areas");
+        List<ServiceForm> testTable = tableRepository.retrieveAllServiceByAreasIn(application.getAppareas());
+        ServiceTable originalTable = new ServiceTable();
+        originalTable.addAll(testTable);
+        System.out.println("Original table:");
+        System.out.println("number of EIS:"+originalTable.getUsedEIS().size());
+        System.out.println("number of CSP:"+originalTable.getUsedCSP().size());
+        System.out.println("number of all service lines:"+originalTable.getList().size());
+        sw.stop();
+        sw.start("find EIS qualified");
+        List<EIS> testEIS = eisRepository.findEISByCapability(application.getBandwidth(),application.getCpu_frequency(),application.getDisk_size(),application.getMem_size(),application.getNum_cpus());
+        System.out.println("number qualified EIS:"+testEIS.size());
+        sw.stop();
+        sw.start("filter table by unlikeCSP, unqualified EIS, latency");
+        Functions.filterTable(testTable,application.getUnpreferedCSPs(),testEIS,application.getLatency());
+        ServiceTable filterTable = new ServiceTable();
+        filterTable.addAll(testTable);
+        System.out.println("Filtered table:");
+        System.out.println("number of EIS:"+filterTable.getUsedEIS().size());
+        System.out.println("number of CSP:"+filterTable.getUsedCSP().size());
+        System.out.println("number of all service lines:"+filterTable.getList().size());
+        sw.stop();
+        sw.start("check reliability and calculate cost for each combination");
+        ServiceTable optimalComb = new ServiceTable();
+        double optimalcost = -1;
+        int n = testTable.size();
+        if(n == 0) {
+            System.out.println("no result, next one");
+            return optimalComb;
+        }
+        //number of possible combination ：2^n
+        BigInteger max = new BigInteger("2");
+        max = max.pow(n);
+        System.out.println("number of possible combination：2^"+n + ", "+ max);
+        BigInteger min = BigInteger.ONE;
+        while(max.compareTo(min) == 1){
+            ServiceTable serviceTable = new ServiceTable();
+            char[] binary = min.toString(2).toCharArray();
+            for(int i = binary.length - 1; i >= 0; i--){
+                if(binary[i] == '1'){
+                    serviceTable.add(testTable.get(i));
+                }
+            }
+            if(serviceTable.checkReliability(application.getNum_EIS_per_Country(),application.getNum_CSP_per_EIS()) &&
+            serviceTable.checkCSP(application.getPreferedCSPs())){
+                double cost = serviceTable.calculateCost();
+                if(optimalcost > cost || optimalcost == -1){
+                    optimalcost = cost;
+                    optimalComb = serviceTable;
+                }
+            }
+            min = min.add(BigInteger.ONE);
+        }
+        sw.stop();
+        System.out.println("Optimal cost: "+ optimalcost);
+        System.out.println(optimalComb);
+        System.out.println(sw.prettyPrint());
+        return optimalComb;
     }
 
 

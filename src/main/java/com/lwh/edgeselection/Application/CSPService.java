@@ -25,11 +25,11 @@ public class CSPService {
 //    public void saveAll(CSP[] csps){
 //        cspRepository.sa;
 //    }
-    public List<CSP> filterArea(List<Area> areas){
-        return cspRepository.findCSPByAreasIn(areas);
+    public List<CSP> filterArea(Iterable<Area> areas){
+        return cspRepository.findCSPByCspareasIn(areas);
     }
 
-    public List<CSP> filterEIS(List<EIS> eiss){
+    public List<CSP> filterEIS(Iterable<EIS> eiss){
         return cspRepository.findCSPByServicesIn(eiss);
     }
 }

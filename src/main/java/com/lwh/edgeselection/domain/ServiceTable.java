@@ -4,8 +4,8 @@ import java.util.*;
 
 public class ServiceTable {
     private Map<EIS, Set<CSP>> map = new HashMap<>();
-    HashSet<EIS> usedEIS = new HashSet<>();
-    HashSet<CSP> usedCSP = new HashSet<>();
+    private HashSet<EIS> usedEIS = new HashSet<>();
+    private HashSet<CSP> usedCSP = new HashSet<>();
     private List<ServiceForm> list = new ArrayList<>();
 
     public void add(ServiceForm serviceForm){
@@ -16,6 +16,12 @@ public class ServiceTable {
         }else {
             Set<CSP> csps = map.get(serviceForm.getEis());
             csps.add(serviceForm.getCsp());
+        }
+    }
+
+    public void addAll(List<ServiceForm> serviceForms){
+        for(ServiceForm serviceForm:serviceForms){
+            add(serviceForm);
         }
     }
 
@@ -41,7 +47,7 @@ public class ServiceTable {
         return checkNumberOfEIS(numOfEIS) && checkNumberOfCSP(numOfCSP);
     }
 
-    public boolean checkCSP(List<CSP> likeCSP) {
+    public boolean checkCSP(Iterable<CSP> likeCSP) {
         for(CSP csp:likeCSP){
             if(!usedCSP.contains(csp)){
                 return false;
@@ -105,6 +111,4 @@ public class ServiceTable {
         }
         return sb.toString();
     }
-
-
 }
