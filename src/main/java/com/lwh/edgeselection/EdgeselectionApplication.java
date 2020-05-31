@@ -1,5 +1,6 @@
 package com.lwh.edgeselection;
 
+import com.lwh.edgeselection.Application.ServiceFunction;
 import com.lwh.edgeselection.Functions.Functions;
 import com.lwh.edgeselection.domain.*;
 import com.lwh.edgeselection.repository.*;
@@ -7,11 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.util.StopWatch;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -22,55 +20,95 @@ public class EdgeselectionApplication {
         SpringApplication.run(EdgeselectionApplication.class, args);
     }
     @Bean
-    public CommandLineRunner mappingDemo(EISRepository eisRepository, AreaRepository areaRepository,
-                                         LatencyRepository latencyRepository, CSPRepository cspRepository,
-                                         TableRepository tableRepository, ApplicationRepository applicationRepository,
-                                         PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository) {
+    public CommandLineRunner mappingDemo(ServiceFunction serviceFunction, ApplicationRepository applicationRepository) {
         return args -> {
+//            serviceFunction.generateEIS();
+//            serviceFunction.generateNewApp1();
+//            serviceFunction.generateApp3();
 
-
-//            Functions.generateEIS(eisRepository,areaRepository,latencyRepository,cspRepository);
-            Functions.generateApp1 (cspRepository,applicationRepository,preferedCSPRepository,unpreferedCSPRepository,areaRepository);
-//            Functions.generateApp(cspRepository,applicationRepository,preferedCSPRepository,unpreferedCSPRepository);
-
+//            serviceFunction.updateLatency(30,20);
+//            serviceFunction.updateReliability(1,3);
 //Selection By explicit
-            List<Application> applications = applicationRepository.findAll();
-            for(Application application:applications){
-                ExecutorService executor = Executors.newSingleThreadExecutor();
-                Future<ServiceTable> future = executor.submit(new Task(tableRepository,eisRepository,applicationRepository,application));
-                try {
-                    System.out.println("Started..");
-                    System.out.println(future.get(10, TimeUnit.MINUTES));
-                    System.out.println("Finished!");
-                } catch (TimeoutException e) {
-                    future.cancel(true);
-                    System.out.println("Terminated!");
+                List<Application> applications = applicationRepository.findAll();
+                List<FormForExcel> excels = new ArrayList<>();
+                for (Application application : applications) {
+                    ExecutorService executor = Executors.newSingleThreadExecutor();
+//                    Future<FormForExcel> future = executor.submit(new Exhaustive(serviceFunction,application));
+//                    Future<FormForExcel> future = executor.submit(new BestFit(serviceFunction, application));
+                    double old = application.getLatency();
+                    application.setLatency(old*0.9);
+//                    int old = application.getNum_EIS_per_Country();
+//                    application.setNum_EIS_per_Country(old-2);
+//                    int old = application.getNum_CSP_per_EIS();
+//                    application.setNum_CSP_per_EIS(old-2);
+                    Future<FormForExcel> future = executor.submit(new BestFitV2(serviceFunction, application));
+                    try {
+                        System.out.println("Started..");
+                        excels.add(future.get(20, TimeUnit.MINUTES));
+                        System.out.println("Finished!");
+                    } catch (TimeoutException e) {
+                        future.cancel(true);
+                        FormForExcel formForExcel = new FormForExcel();
+                        formForExcel.setResult("timeout");
+                        formForExcel.setTime(-1);
+                        excels.add(formForExcel);
+                        System.out.println("Terminated!");
+                    }
+                    executor.shutdownNow();
                 }
-                executor.shutdownNow();
-//                Functions.bruteForce(tableRepository,eisRepository,applicationRepository,application);
-            }
+//            Functions.writeExcel(excels, "./result/bestfitV1App1.xlsx");
+            Functions.writeExcel(excels, "./result/new/bestfitV2NewApp1Latency90.xlsx");
+//                Functions.writeExcel(excels,"./result/15-27App1.xlsx");
         };
     }
 }
 
-class Task implements Callable<ServiceTable> {
-    TableRepository tableRepository;
-    EISRepository eisRepository;
-    ApplicationRepository applicationRepository;
+class Exhaustive implements Callable<FormForExcel> {
+    ServiceFunction serviceFunction;
     Application application;
 
-    public Task(TableRepository tableRepository, EISRepository eisRepository, ApplicationRepository applicationRepository, Application application) {
-        this.tableRepository = tableRepository;
-        this.eisRepository = eisRepository;
-        this.applicationRepository = applicationRepository;
+    public Exhaustive(ServiceFunction serviceFunction, Application application) {
+        this.serviceFunction = serviceFunction;
         this.application = application;
     }
 
     @Override
-    public ServiceTable call() throws Exception {
-        return Functions.bruteForce(tableRepository,eisRepository,applicationRepository,application);
+    public FormForExcel call() throws Exception {
+        return serviceFunction.bruteForce(application);
     }
 }
+
+class BestFit implements Callable<FormForExcel> {
+    ServiceFunction serviceFunction;
+    Application application;
+
+    public BestFit(ServiceFunction serviceFunction, Application application) {
+        this.serviceFunction = serviceFunction;
+        this.application = application;
+    }
+
+    @Override
+    public FormForExcel call() throws Exception {
+        return serviceFunction.BestFit(application);
+    }
+}
+
+class BestFitV2 implements Callable<FormForExcel> {
+    ServiceFunction serviceFunction;
+    Application application;
+
+    public BestFitV2(ServiceFunction serviceFunction, Application application) {
+        this.serviceFunction = serviceFunction;
+        this.application = application;
+    }
+
+    @Override
+    public FormForExcel call() throws Exception {
+        return serviceFunction.BestFitV2(application);
+    }
+}
+
+
 
 
 

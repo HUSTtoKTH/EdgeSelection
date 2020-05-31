@@ -1,9 +1,14 @@
 package com.lwh.edgeselection.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "UnpreferedCSP")
+@Getter
+@Setter
 public class UnpreferedCSP {
 
     @Id
@@ -22,28 +27,5 @@ public class UnpreferedCSP {
         this.CSPid = csp_id;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getCSPid() {
-        return CSPid;
-    }
-
-    public void setCSPid(Long CSP_id) {
-        this.CSPid = CSP_id;
-    }
-
-    public Long getApplicationid() {
-        return applicationid;
-    }
-
-    public void setApplicationid(Long application_id) {
-        this.applicationid = application_id;
-    }
 }
 

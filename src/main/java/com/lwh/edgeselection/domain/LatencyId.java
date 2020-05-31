@@ -1,11 +1,16 @@
 package com.lwh.edgeselection.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
+@Getter
+@Setter
 public class LatencyId implements Serializable {
 
     private Long areaId;
@@ -23,29 +28,6 @@ public class LatencyId implements Serializable {
         this.serviceId = serviceId;
     }
 
-    public Long getAreaId() {
-        return areaId;
-    }
-
-    public void setAreaId(Long areaId) {
-        this.areaId = areaId;
-    }
-
-    public Long getCspId() {
-        return cspId;
-    }
-
-    public void setCspId(Long cspId) {
-        this.cspId = cspId;
-    }
-
-    public Long getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(Long serviceId) {
-        this.serviceId = serviceId;
-    }
 
     @Override
     public boolean equals(Object o) {

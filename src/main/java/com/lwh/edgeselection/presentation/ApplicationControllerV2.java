@@ -4,6 +4,7 @@ package com.lwh.edgeselection.presentation;
 import com.lwh.edgeselection.Application.AreaService;
 import com.lwh.edgeselection.Application.CSPService;
 import com.lwh.edgeselection.Application.EISService;
+import com.lwh.edgeselection.Application.ServiceFunction;
 import com.lwh.edgeselection.Functions.Functions;
 import com.lwh.edgeselection.domain.*;
 import com.lwh.edgeselection.repository.ApplicationRepository;
@@ -39,6 +40,8 @@ public class ApplicationControllerV2 {
     private TableRepository tableRepository;
     @Autowired
     private EISRepository eisRepository;
+    @Autowired
+    private ServiceFunction serviceFunction;
 
     @GetMapping("/appareainput")
     public String appareaget(Model model) {
@@ -97,7 +100,7 @@ public class ApplicationControllerV2 {
         application.setUnpreferedCSPs((Set<CSP>) session.getAttribute("unlikeCSP"));
         application.setAppareas((Set<Area>) session.getAttribute("area"));
         applicationRepository.save(application);
-        ServiceTable result = Functions.bruteForce(tableRepository,eisRepository,applicationRepository,application);
+        ServiceTable result = serviceFunction.bruteForceForWeb(application);
         model.addAttribute("result",result);
         return "selectionoutput";
 //        return result.toString();

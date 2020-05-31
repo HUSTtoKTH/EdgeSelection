@@ -61,6 +61,7 @@ public class Application implements Serializable {
     private int num_EIS_per_Country;
     private int num_CSP_per_EIS;
     private double capacity;
+    private int complexity;
 
     public Application() {
     }
