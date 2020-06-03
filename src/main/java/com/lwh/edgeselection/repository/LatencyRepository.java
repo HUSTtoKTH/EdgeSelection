@@ -18,9 +18,9 @@ public interface LatencyRepository extends JpaRepository<Latency, LatencyId> {
 //wortking
 //    @Query("select s FROM EIS s JOIN s.csps c")
 //    List<EIS> findByEmailAddress();
-//        @Query("select new com.lwh.edgeselection.domain.ServiceForm(EIS, CSP) FROM EIS s JOIN s.csps c")
+//        @Query("select new com.lwh.edgeselection.DTO.ServiceForm(EIS, CSP) FROM EIS s JOIN s.csps c")
 //    List<EIS> findByEmailAddress();
-//    @Query("select new com.lwh.edgeselection.domain.ServiceForm(EIS, CSP, Latency) " +
+//    @Query("select new com.lwh.edgeselection.DTO.ServiceForm(EIS, CSP, Latency) " +
 //            "FROM latencys l" +
 //            "INNER JOIN csps c ON c.id = l.csp_id" +
 //            "INNER JOIN services s ON s.id = l.service_id" +

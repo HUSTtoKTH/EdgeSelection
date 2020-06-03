@@ -22,9 +22,6 @@ public class CSPService {
     public CSP save(CSP csp) {
         return cspRepository.save(csp);
     }
-//    public void saveAll(CSP[] csps){
-//        cspRepository.sa;
-//    }
     public List<CSP> filterArea(Iterable<Area> areas){
         return cspRepository.findCSPByCspareasIn(areas);
     }

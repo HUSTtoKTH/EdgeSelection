@@ -11,6 +11,7 @@
 
 </head>
 <body>
+<div th:insert="header :: header">...</div>
 
     <div class="container" style="margin-top: 50px;">
 
@@ -62,20 +63,26 @@
                         <th>#</th>
                         <th>EIS</th>
                         <th>CSP</th>
+                        <th>Area</th>
+                        <th>Latency/ms</th>
+                        <th>Cost/$</th>
 <!--                        <th>Area</th>-->
 <!--                        <th>Latency</th>-->
                     </tr>
                 </thead>
-                <tbody th:each="element,itemStat:${result.map}">
+                <tbody th:each="service,itemStat:${result}">
                     <tr>
                         <td th:text="${itemStat.count}" >1</td>
-                        <td th:text="${element.key.id}">keyvalue</td>
-                        <td>
-
-                            <div th:each="anews : ${element.value}" >
-                                <p style="display:inline;" th:text="${anews.id}">Some name</p>
-                            </div>
-                        </td>
+                        <td th:text="${service.eis.id}">keyvalue</td>
+                        <td th:text="${service.csp.id}">keyvalue</td>
+                        <td th:text="${service.area.name}">keyvalue</td>
+                        <td th:text="${#numbers.formatDecimal(service.latency.delay, 0, 2)}">keyvalue</td>
+                        <td th:text="${#numbers.formatDecimal(service.cost, 0, 2)}">keyvalue</td>
+<!--                        <td>-->
+<!--                            <div th:each="anews : ${element.value}" >-->
+<!--                                <p style="display:inline;" th:text="${anews.id}">Some name</p>-->
+<!--                            </div>-->
+<!--                        </td>-->
                     </tr>
                     </table>
                 </tr>

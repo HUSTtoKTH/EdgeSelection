@@ -5,6 +5,7 @@ import com.lwh.edgeselection.Application.AreaService;
 import com.lwh.edgeselection.Application.CSPService;
 import com.lwh.edgeselection.Application.EISService;
 import com.lwh.edgeselection.Application.LatencyService;
+import com.lwh.edgeselection.DTO.LatencyListContainer;
 import com.lwh.edgeselection.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,11 +31,10 @@ public class EdgeController {
     @Autowired
     private LatencyService latencyService;
 
-//    @GetMapping("/test")
-//    public void test(Model model) {
-//        List<CSP> CSPList = cspService.getAll();
-//        System.out.println(CSPList);
-//    }
+    @GetMapping("/")
+    public String mainPage() {
+        return "index";
+    }
 
     @GetMapping("/cspinput")
     public String servicecspInput(Model model, HttpSession session) {

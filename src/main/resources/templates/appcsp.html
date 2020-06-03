@@ -11,7 +11,7 @@
 
 </head>
 <body>
-
+<div th:insert="header :: header">...</div>
     <div class="container" style="max-width: 700px;margin-top: 50px;">
 
         <div class="well">
@@ -21,7 +21,7 @@
                     <select class="form-control selectpicker" name="preferedCSPs" id="cspsId" multiple>
                         <option th:each="csp : ${CSPList}"
                                 th:value="${csp.id}"
-                                th:text="${csp.name}+' '+${csp.description}">csp
+                                th:text="${csp.id}+' '+${csp.name}">csp
                         </option>
                     </select>
                 </div>
@@ -31,7 +31,7 @@
                     <select class="form-control selectpicker" name="unpreferedCSPs" id="nocspsId" multiple>
                         <option th:each="csp : ${CSPList}"
                                 th:value="${csp.id}"
-                                th:text="${csp.name}+' '+${csp.description}">csp
+                                th:text="${csp.id}+' '+${csp.name}">csp
                         </option>
                     </select>
                 </div>

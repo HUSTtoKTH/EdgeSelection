@@ -1,5 +1,8 @@
 package com.lwh.edgeselection.Functions;
 
+import com.lwh.edgeselection.DTO.FormForExcel;
+import com.lwh.edgeselection.DTO.ServiceForm;
+import com.lwh.edgeselection.DTO.ServiceTable;
 import com.lwh.edgeselection.domain.*;
 import com.lwh.edgeselection.repository.*;
 import org.apache.commons.lang3.RandomUtils;
@@ -210,7 +213,6 @@ public class Functions {
 
 
     public static void generateAppRand(CSPRepository cspRepository, ApplicationRepository applicationRepository,
-                                PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository,
                                        AreaRepository areaRepository) {
         //generate Applications
         List<CSP> csps = cspRepository.findAll();
@@ -243,7 +245,6 @@ public class Functions {
     }
 
     public static void generateGaussionApp1(CSPRepository cspRepository, ApplicationRepository applicationRepository,
-                                    PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository,
                                     AreaRepository areaRepository) {
         //generate Applications
         List<CSP> csps = cspRepository.findAll();
@@ -267,7 +268,6 @@ public class Functions {
     }
 
     public static void generateApp1(CSPRepository cspRepository, ApplicationRepository applicationRepository,
-                                       PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository,
                                     AreaRepository areaRepository) {
         //generate Applications
         List<CSP> csps = cspRepository.findAll();
@@ -290,7 +290,6 @@ public class Functions {
     }
 
     public static void generateApp2(CSPRepository cspRepository, ApplicationRepository applicationRepository,
-                                    PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository,
                                     AreaRepository areaRepository) {
         //generate Applications
         List<CSP> csps = cspRepository.findAll();
@@ -313,7 +312,6 @@ public class Functions {
     }
 
     public static void generateApp3(CSPRepository cspRepository, ApplicationRepository applicationRepository,
-                                    PreferedCSPRepository preferedCSPRepository, UnpreferedCSPRepository unpreferedCSPRepository,
                                     AreaRepository areaRepository) {
         //generate Applications
         List<CSP> csps = cspRepository.findAll();

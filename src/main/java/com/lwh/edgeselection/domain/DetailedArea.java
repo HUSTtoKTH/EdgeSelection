@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+//@Entity
 @Getter
 @Setter
-@Table(name = "detailareas")
+//@Table(name = "detailareas")
 public class DetailedArea implements Serializable {
 
     @Id

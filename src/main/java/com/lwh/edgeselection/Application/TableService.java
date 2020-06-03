@@ -1,7 +1,7 @@
 package com.lwh.edgeselection.Application;
 
 import com.lwh.edgeselection.domain.Area;
-import com.lwh.edgeselection.domain.ServiceForm;
+import com.lwh.edgeselection.DTO.ServiceForm;
 import com.lwh.edgeselection.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

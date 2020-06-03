@@ -1,5 +1,8 @@
 package com.lwh.edgeselection.Application;
 
+import com.lwh.edgeselection.DTO.FormForExcel;
+import com.lwh.edgeselection.DTO.ServiceForm;
+import com.lwh.edgeselection.DTO.ServiceTable;
 import com.lwh.edgeselection.Functions.Functions;
 import com.lwh.edgeselection.domain.*;
 import com.lwh.edgeselection.repository.*;
@@ -27,10 +30,6 @@ public class ServiceFunction {
     private CSPRepository cspRepository;
     @Autowired
     private ApplicationRepository applicationRepository;
-    @Autowired
-    private PreferedCSPRepository preferedCSPRepository;
-    @Autowired
-    private UnpreferedCSPRepository unpreferedCSPRepository;
     @Autowired
     private TableRepository tableRepository;
 
@@ -342,94 +341,9 @@ public class ServiceFunction {
         return n;
     }
 
-    public ServiceTable bruteForceForWeb(Application application){
-        System.out.println("Application: "+application.getId());
-        Set<CSP> likeCSP= application.getPreferedCSPs();
-        Set<CSP> unlikeCSP= application.getUnpreferedCSPs();
-        System.out.print("Prefered CSP: ");
-        StringBuilder sb = new StringBuilder();
-        for(CSP csp:likeCSP){
-            sb.append(csp.getId()+" ");
-            System.out.print(csp.getId()+" ");
-        }
-        System.out.println();
-        System.out.print("UnPrefered CSP: ");
-        sb = new StringBuilder();
-        for(CSP csp:unlikeCSP){
-            sb.append(csp.getId()+" ");
-            System.out.print(csp.getId()+" ");
-        }
-        System.out.println();
-        StopWatch sw = new StopWatch("test");
-        sw.start("retrive All Service By Areas");
-        List<ServiceForm> testTable = tableRepository.retrieveAllServiceByAreasIn(application.getAppareas());
-        ServiceTable originalTable = new ServiceTable();
-        originalTable.addAll(testTable);
-        System.out.println("Original table:");
-        System.out.println("number of EIS:"+originalTable.getUsedEIS().size());
-        System.out.println("number of CSP:"+originalTable.getUsedCSP().size());
-        System.out.println("number of all service lines:"+originalTable.getList().size());
-        sw.stop();
-        sw.start("find EIS qualified");
-        List<EIS> testEIS = eisRepository.findEISByCapability(application.getBandwidth(),application.getCpu_frequency(),application.getDisk_size(),application.getMem_size(),application.getNum_cpus());
-        System.out.println("number qualified EIS:"+testEIS.size());
-        sw.stop();
-        sw.start("filter table by unlikeCSP, unqualified EIS, latency");
-        Functions.filterTable(testTable,application.getUnpreferedCSPs(),testEIS,application.getLatency());
-        ServiceTable filterTable = new ServiceTable();
-        filterTable.addAll(testTable);
-        System.out.println("Filtered table:");
-        System.out.println("number of EIS:"+filterTable.getUsedEIS().size());
-        System.out.println("number of CSP:"+filterTable.getUsedCSP().size());
-        System.out.println("number of all service lines:"+filterTable.getList().size());
-        sw.stop();
-        sw.start("check reliability and calculate cost for each combination");
-        ServiceTable optimalComb = new ServiceTable();
-        double optimalcost = -1;
-        int n = testTable.size();
-        if(n == 0) {
-            System.out.println("no result, next one");
-            return optimalComb;
-        }
-        if(!filterTable.checkCSP(likeCSP)) {
-            System.out.println("Too much liked CSP, no result, next one");
-            return optimalComb;
-        }
-        //number of possible combination ：2^n
-        BigInteger max = new BigInteger("2");
-        max = max.pow(n);
-        System.out.println("number of possible combination：2^"+n + ", "+ max);
-        if(n >= 28) {
-            System.out.println("Too much combination, next one");
-            return optimalComb;
-        }
-        BigInteger min = BigInteger.ONE;
-        while(max.compareTo(min) == 1){
-            ServiceTable serviceTable = new ServiceTable();
-            char[] binary = min.toString(2).toCharArray();
-            for(int i = 0; i < binary.length; i++){
-                if(binary[i] == '1'){
-                    serviceTable.add(filterTable.getList().get(binary.length-1-i));
-                }
-            }
-            if(serviceTable.checkReliability(application.getNum_EIS_per_Country(),application.getNum_CSP_per_EIS()) &&
-                    serviceTable.checkCSP(application.getPreferedCSPs())){
-                double cost = serviceTable.calculateCost();
-                if(optimalcost > cost || optimalcost == -1){
-                    optimalcost = cost;
-                    optimalComb = serviceTable;
-                }
-            }
-            min = min.add(BigInteger.ONE);
-        }
-        sw.stop();
-        System.out.println("Optimal cost: "+ optimalcost);
-        System.out.println(optimalComb);
-        System.out.println(sw.prettyPrint());
-        return optimalComb;
-    }
 
-    public  FormForExcel BestFit(Application application){
+
+    public FormForExcel BestFit(Application application){
         FormForExcel formForExcel = new FormForExcel();
         formForExcel.setNum_EIS_per_Country(application.getNum_EIS_per_Country());
         formForExcel.setNum_CSP_per_EIS(application.getNum_CSP_per_EIS());
@@ -699,6 +613,7 @@ public class ServiceFunction {
         formForExcel.setCost(optimalcost);
         return formForExcel;
     }
+
 
     public void updateLatency(int low, int range) {
         List<Application> applications = applicationRepository.findAll();

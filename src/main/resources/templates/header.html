@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="header">
+
+
+
+        <link rel='stylesheet' th:href="@{/css/core.css}" />
+        <link rel='stylesheet' th:href="@{/css/font-awesome.min.css}" />
+        <link rel='stylesheet' th:href="@{/css/a1c194d189c3487f85f1fbcf3d59e567.css}" />
+        <link rel='stylesheet' th:href="@{/css/8915f1e01314432fade8e2754513e0da.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+        <link rel='stylesheet' th:href="@{/css/client.css}" />
+
+
+
+    <div class="main ">
+
+
+    <div id='all-content' class="snap-content " role="main">
+
+        <div class="header-container enable-sticky defaults  jobs-page " role="navigation">
+
+            <!-- DESKTOP NAV -->
+
+            <div class="main-nav">
+
+                <!--
+                social share uses absolute positioning and often overlaps
+                with text. double check this and adjust styles if necessary -->
+
+                <div class="clear-navbar-toggle hamburger">
+                    <button id="snap-left" type="button" class="pull-left navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+
+                    <span class="mobile-menu-label">Menu</span>
+                    <div class="logo">
+                        <img th:src="@{/picture/header-nav_logo_img-en-us-1563273582355.png}" alt="ericsson logo">
+                        <a href="https://www.ericsson.com">
+                            ericsson.com
+                        </a>
+                    </div>
+                </div>
+                <div class="logo">
+                    <img th:src="@{/picture/header-nav_logo_img-en-us-1563273582355.png}" alt="ericsson logo">
+                    <a href="https://www.ericsson.com">
+                        ericsson.com
+                    </a>
+                </div>
+
+                <ul class="hidden-xs hidden-sm header-nav borderXwidth">
+                    <li>
+                        <!-- <a href='https://www.ericsson.com/en/networks'>Networks</a>  -->
+                        <a href='https://www.ericsson.com/en/networks'>Networks <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/networks/offerings">Offerings</a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/networks/offerings/5g">5G Access</a></li>
+                                        <li><a href="https://www.ericsson.com/en/networks/offerings/urban-wireless">Urban Wireless</a></li>
+                                        <li><a href="https://www.ericsson.com/en/networks/offerings/transport">5G transport</a></li>
+                                        <li><a href="https://www.ericsson.com/en/networks/offerings/cellular-iot">Cellular IoT</a></li>
+                                        <li><a href="https://www.ericsson.com/en/networks/offerings/network-services-and-automation">Network services and automation</a></li>
+                                        <li><a href="https://www.ericsson.com/en/networks/offerings/mission-critical-private-networks">Mission critical and private networks</a></li>
+                                        <li><a href="https://www.ericsson.com/en/networks/offerings/fixed-wireless-access">Fixed Wireless Access</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/networks/trending">Trending</a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/networks/trending/insights-and-reports">Insights and reports</a></li>
+                                        <li><a href="https://www.ericsson.com/en/networks/trending/hot-topics">Hot topics</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/networks/cases">Cases</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href='https://www.ericsson.com/digital-services'>Digital Services <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/networks/offerings">Offerings</a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/offerings/network-automation">Network Automation</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/offerings/nfvi-cloud-infrastructure">Cloud Infrastructure</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/offerings/core-network">Core Network</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/offerings/voice-services">Voice Services</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/offerings/digital-bss">Digital BSS</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/networks/trending">Trending</a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/trending/5g-voice-evolution-where-to-start">5G Voice</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/trending/cloud-native">Cloud Native</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/trending/distributed-cloud">Edge Computing</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/trending/network-functions-virtualization">NFV</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/trending/network-slicing">Network Slicing</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/trending/opensource-networking">Open Source Networking</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/trending/digital-experience">Telecom Customer Experience</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/trending/XaaS">XaaS</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/networks/cases">Cases</a>
+                                </li>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/blog">Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href='https://www.ericsson.com/en/managed-services'>Managed Services <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/managed-services/redefine-customer-experience"> Redefine customer experience in real-time   </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/managed-services/drive-efficiency-from-the-inside-out"> Drive efficiency from the inside out   </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/managed-services/fuel-innovation-at-every-level" > Fuel innovation at every level   </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/managed-services/the-future-runs-here"> The future runs here  </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href='https://www.ericsson.com/en/internet-of-things'>IoT <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/internet-of-things/understanding-iot"> Understanding IoT  </a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/understanding-iot/for-service-providers"> IoT for service providers  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/understanding-iot/for-industries"> IoT for industries  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/iot-platform/iot-ecosystem"> IoT for ecosystems  </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/internet-of-things/our-take"> Our take on IoT  </a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/trending/talking-iot-with-ericsson"> Podcast-Talking IoT with Ericsson  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/blog"> Blog  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/hot-topics"> Hot topics  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/iot-connectivity"> IoT connectivity  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/industry4-0"> Industry 4.0  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/automotive"> Connected vehicles  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/iot-security"> IoT security  </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/internet-of-things/cases"> Cases  </a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/cases/global-iot-network"> Global IoT Network </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/resources"> Resources  </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/internet-of-things/offerings"> Offerings  </a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/networks/offerings/cellular-iot"> Cellular IoT  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/iot-platform"> IoT platform  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/security/security-management"> Security management  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/industry4-0/solutions"> Industry 4.0 solutions  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/automotive/connected-vehicle-cloud"> Connected vehicle platform  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/iot-and-new-business"> Portfolio  </a></li>
+                                        <li><a href="https://www.ericsson.com/en/internet-of-things/contact"> Contact  </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href='https://www.ericsson.com/en/portfolio'>Portfolio <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/internet-of-things/contact"> Contact  </a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/networks/ericsson-radio-system">Ericsson Radio System</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/networks/network-services">Network Services</a></li>
+                                        <li>HEADER.NETWORK-SOLUTIONS</li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/networks/network-management">Network Management</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/digital-services/cloud-core">Cloud Core</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/portfolio/digital-services"> Digital Services </a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/digital-services/automated-network-operations">Automated Network Operations</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/digital-services/cloud-communication">Cloud Communication</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/digital-services/cloud-core">Cloud Core</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/offerings/nfvi-cloud-infrastructure">Cloud Infrastructure</a></li>
+                                        <li><a href="https://www.ericsson.com/en/digital-services/offerings/digital-bss">Digital BSS</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/digital-services/transform-business">Transform Business</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/portfolio/managed-services"> Managed Services </a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/managed-services/smart-design">Smart Design</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/managed-services/dynamic-deployment">Dynamic Deployment</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/managed-services/data-driven-operations">Data Driven Operations</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/managed-services/intelligent-optimization">Intelligent Optimization</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/managed-services/seamless-security">Seamless Security</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/managed-services/agile-application-management">Agile Application Management</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <a href="https://www.ericsson.com/en/portfolio/iot-and-new-business"> IoT and New Business </a>
+                                    <ul>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/iot-and-new-business/iot-solutions">IoT Solution areas</a></li>
+                                        <li><a href="https://www.ericsson.com/en/portfolio/iot-and-new-business/emerging-business">New Business</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="https://www.ericsson.com/en/future-technologies"> Future Technologies <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/future-technologies/5g-evolution"> 5G evolution and beyond </a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/future-technologies/future-iot"> Future IoT </a></li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/future-technologies/future-network-security"> Future network security </a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/future-technologies/cyber-physical-systems"> Cyber physical systems </a></li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/future-technologies/mobile-edge-computing"> Mobile edge computing </a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/future-technologies/autonomous-networks"> Autonomous networks </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <span>More <i class="fa fa-chevron-down"></i></span>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/contact">Contact us</a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/about-us"> About us </a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/careers"> Careers </a></li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/about-us/sustainability-and-corporate-responsibility"> Sustainability & CR </a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/patents"> Patents </a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/events">Events</a></li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/newsroom"> Newsroom </a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/industry-analysts"> Industry analysts </a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/investors"> Investors </a></li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/public-policy-and-government-affairs"> Policy makers </a></li>
+                                <li class="menu-option-title"><a href="https://www.ericsson.com/en/partners"> Partners </a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!--
+                    header-logout only appears when a user is logged in.
+                    It can be moved to any navigation div (top, main, etc).
+                    Use best judgment for what would make sense in layout placement
+                    -->
+                </ul>
+                <div class="snap-container">
+
+
+                    <ul>
+                        <li class="hide-custom-screen"> <a href='https://jobs.ericsson.com/candidatePortal'>Log In/Sign Up </a>  </li>
+                        <li class="clear-core hide-custom-screen">
+
+                            <div class='hidden-xs hdr-login'>
+                                <div class="jibe-login-container">
+                                    <a class='jibe-login-button pull-right login-btn' href="/login" id='link-login'>
+                                        登录
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+            <!-- END DESKTOP NAV -->
+
+
+            <!-- MOBILE NAV -->
+            <div class="collapse mobile-menu navbar-nav" id="header-nav--collapse">
+                <ul class="clear-core vertical-indicator">
+
+                    <li class="menu-option-category">
+                        <a href='https://www.ericsson.com/en/networks'>Networks <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/networks/offerings">Offerings</a>
+
+                <ul>
+                  <li><a href="https://www.ericsson.com/en/networks/offerings/5g">5G Access</a></li>
+                  <li><a href="https://www.ericsson.com/en/networks/offerings/urban-wireless">Urban Wireless</a></li>
+                  <li><a href="https://www.ericsson.com/en/networks/offerings/transport">5G transport</a></li>
+                  <li><a href="https://www.ericsson.com/en/networks/offerings/cellular-iot">Cellular IoT</a></li>
+                  <li><a href="https://www.ericsson.com/en/networks/offerings/network-services-and-automation">Network services and automation</a></li>
+                  <li><a href="https://www.ericsson.com/en/networks/offerings/mission-critical-private-networks">Mission critical and private networks</a></li>
+                  <li><a href="https://www.ericsson.com/en/networks/offerings/fixed-wireless-access">Fixed Wireless Access</a></li>
+                </ul>
+              </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/networks/trending">Trending</a>
+
+              <ul>
+                <li><a href="https://www.ericsson.com/en/networks/trending/insights-and-reports">Insights and reports</a></li>
+                <li><a href="https://www.ericsson.com/en/networks/trending/hot-topics">Hot topics</a></li>
+              </ul>
+              </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/networks/cases">Cases</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menu-option-category">
+                        <a href='https://www.ericsson.com/digital-services'>Digital Services <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/networks/offerings">Offerings</a>
+                  <!-- <a href="" class="menu-option-title"></a> -->
+              <ul>
+                <li><a href="https://www.ericsson.com/en/digital-services/offerings/network-automation">Network Automation</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/offerings/nfvi-cloud-infrastructure">Cloud Infrastructure</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/offerings/core-network">Core Network</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/offerings/voice-services">Voice Services</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/offerings/digital-bss">Digital BSS</a></li>
+              </ul>
+            </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/networks/trending">Trending</a>
+              <ul>
+                <li><a href="https://www.ericsson.com/en/digital-services/trending/5g-voice-evolution-where-to-start">5G Voice</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/trending/cloud-native">Cloud Native</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/trending/distributed-cloud">Edge Computing</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/trending/network-functions-virtualization">NFV</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/trending/network-slicing">Network Slicing</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/trending/opensource-networking">Open Source Networking</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/trending/digital-experience">Telecom Customer Experience</a></li>
+                <li><a href="https://www.ericsson.com/en/digital-services/trending/XaaS">XaaS</a></li>
+              </ul>
+              </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/networks/cases">Cases</a>
+                                </li>
+                                <li class="menu-option-title">
+                                    <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/blog">Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menu-option-category">
+                        <a href='https://www.ericsson.com/en/managed-services'>Managed Services <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+                                    <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/managed-services/redefine-customer-experience"> Redefine customer experience in real-time   </a>
+                                    <!-- <a href="" class="menu-option-title"></a> -->
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/managed-services/drive-efficiency-from-the-inside-out"> Drive efficiency from the inside out   </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/managed-services/fuel-innovation-at-every-level" > Fuel innovation at every level   </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+                                    <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/managed-services/the-future-runs-here"> The future runs here  </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menu-option-category">
+                        <a href='https://www.ericsson.com/en/internet-of-things'>IoT <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/internet-of-things/understanding-iot"> Understanding IoT  </a>
+                  <!-- <a href="" class="menu-option-title"></a> -->
+                <ul>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/understanding-iot/for-service-providers"> IoT for service providers  </a></li>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/understanding-iot/for-industries"> IoT for industries  </a></li>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/iot-platform/iot-ecosystem"> IoT for ecosystems  </a></li>
+                </ul>
+              </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/internet-of-things/our-take"> Our take on IoT  </a>
+                <ul>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/trending/talking-iot-with-ericsson"> Podcast-Talking IoT with Ericsson  </a></li>
+                  <li><a href="https://www.ericsson.com/en/blog"> Blog  </a></li>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/hot-topics"> Hot topics  </a></li>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/iot-connectivity"> IoT connectivity  </a></li>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/industry4-0"> Industry 4.0  </a></li>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/automotive"> Connected vehicles  </a></li>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/iot-security"> IoT security  </a></li>
+                </ul>
+              </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/internet-of-things/cases"> Cases  </a>
+                <ul>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/cases/global-iot-network"> Global IoT Network </a></li>
+                  <li><a href="https://www.ericsson.com/en/internet-of-things/resources"> Resources  </a></li>
+                </ul>
+              </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+              <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/internet-of-things/offerings"> Offerings  </a>
+              <ul>
+                <li><a href="https://www.ericsson.com/en/networks/offerings/cellular-iot"> Cellular IoT  </a></li>
+                <li><a href="https://www.ericsson.com/en/internet-of-things/iot-platform"> IoT platform  </a></li>
+                <li><a href="https://www.ericsson.com/en/security/security-management"> Security management  </a></li>
+                <li><a href="https://www.ericsson.com/en/internet-of-things/industry4-0/solutions"> Industry 4.0 solutions  </a></li>
+                <li><a href="https://www.ericsson.com/en/internet-of-things/automotive/connected-vehicle-cloud"> Connected vehicle platform  </a></li>
+                <li><a href="https://www.ericsson.com/en/portfolio/iot-and-new-business"> Portfolio  </a></li>
+                <li><a href="https://www.ericsson.com/en/internet-of-things/contact"> Contact  </a></li>
+              </ul>
+              </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menu-option-category">
+                        <a href='https://www.ericsson.com/en/portfolio'>Portfolio <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/internet-of-things/contact"> Contact  </a>
+                  <!-- <a href="" class="menu-option-title"></a> -->
+                <ul>
+                  <li><a href="https://www.ericsson.com/en/portfolio/networks/ericsson-radio-system">Ericsson Radio System</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/networks/network-services">Network Services</a></li>
+                  <li>HEADER.NETWORK-SOLUTIONS</li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/networks/network-management">Network Management</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/digital-services/cloud-core">Cloud Core</a></li>
+                </ul>
+              </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/portfolio/digital-services"> Digital Services </a>
+                <ul>
+                  <li><a href="https://www.ericsson.com/en/portfolio/digital-services/automated-network-operations">Automated Network Operations</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/digital-services/cloud-communication">Cloud Communication</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/digital-services/cloud-core">Cloud Core</a></li>
+                  <li><a href="https://www.ericsson.com/en/digital-services/offerings/nfvi-cloud-infrastructure">Cloud Infrastructure</a></li>
+                  <li><a href="https://www.ericsson.com/en/digital-services/offerings/digital-bss">Digital BSS</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/digital-services/transform-business">Transform Business</a></li>
+                </ul>
+              </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+                <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/portfolio/managed-services"> Managed Services </a>
+                <ul>
+                  <li><a href="https://www.ericsson.com/en/portfolio/managed-services/smart-design">Smart Design</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/managed-services/dynamic-deployment">Dynamic Deployment</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/managed-services/data-driven-operations">Data Driven Operations</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/managed-services/intelligent-optimization">Intelligent Optimization</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/managed-services/seamless-security">Seamless Security</a></li>
+                  <li><a href="https://www.ericsson.com/en/portfolio/managed-services/agile-application-management">Agile Application Management</a></li>
+                </ul>
+              </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="menu-option-title">
+              <span class="submenu">
+              <i class="fa fa-chevron-down"></i> <a href="https://www.ericsson.com/en/portfolio/iot-and-new-business"> IoT and New Business </a>
+              <ul>
+                <li><a href="https://www.ericsson.com/en/portfolio/iot-and-new-business/iot-solutions">IoT Solution areas</a></li>
+                <li><a href="https://www.ericsson.com/en/portfolio/iot-and-new-business/emerging-business">New Business</a></li>
+              </ul>
+              </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menu-option-category">
+                        <a href="https://www.ericsson.com/en/future-technologies"> Future Technologies <i class="fa fa-chevron-down"></i></a>
+                        <div class="sub-menu">
+                            <ul>
+                                <li><a href="https://www.ericsson.com/en/future-technologies/5g-evolution"> 5G evolution and beyond </a></li>
+                                <li><a href="https://www.ericsson.com/en/future-technologies/future-iot"> Future IoT </a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="https://www.ericsson.com/en/future-technologies/future-network-security"> Future network security </a></li>
+                                <li><a href="https://www.ericsson.com/en/future-technologies/cyber-physical-systems"> Cyber physical systems </a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="https://www.ericsson.com/en/future-technologies/mobile-edge-computing"> Mobile edge computing </a></li>
+                                <li><a href="https://www.ericsson.com/en/future-technologies/autonomous-networks"> Autonomous networks </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menu-option-category">
+                        <span>More <i class="fa fa-chevron-down"></i></span>
+                        <div class="sub-menu">
+                            <ul>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/contact">Contact us</a></li>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/about-us"> About us </a></li>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/careers"> Careers </a></li>
+                            </ul>
+                            <ul>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/about-us/sustainability-and-corporate-responsibility"> Sustainability & CR </a></li>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/patents"> Patents </a></li>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/events">Events</a></li>
+                            </ul>
+                            <ul>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/newsroom"> Newsroom </a></li>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/industry-analysts"> Industry analysts </a></li>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/investors"> Investors </a></li>
+                            </ul>
+                            <ul>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/public-policy-and-government-affairs"> Policy makers </a></li>
+                                <li><i class="fa fa-chevron-down"></i><a href="https://www.ericsson.com/en/partners"> Partners </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- END MOBILE NAV -->
+
+        </div>
+
+    </div>
+
+</html>
