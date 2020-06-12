@@ -1,5 +1,6 @@
 package com.lwh.edgeselection.DTO;
 
+import com.lwh.edgeselection.domain.Application;
 import com.lwh.edgeselection.domain.CSP;
 import com.lwh.edgeselection.domain.EIS;
 import lombok.Getter;
@@ -457,5 +458,18 @@ public class ServiceTable {
 
     public void orderListByLatency(){
         Collections.sort(list,Comparator.comparingDouble(s -> s.getLatency().getDelay()));
+    }
+
+    public int validBnB(Application application){
+        if(!checkBudget(application.getBudget())){
+            return -1;
+        }
+        if(!checkNumberOfEIS(application.getNum_EIS_per_Country())){
+            return 0;
+        }
+        if(!checkNumberOfCSP(application.getNum_CSP_per_EIS())){
+            return 0;
+        }
+        return 1;
     }
 }

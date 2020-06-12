@@ -2,25 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a04c43-c494-46bc-938f-e4dcb4c16af8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/result/latency/BFApp1.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/result/latency/BFApp2.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/result/latency/bruteApp1.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunctionLatency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/lwh/edgeselection/Application/ServiceFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/DTO/BinaryRepresent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edgeselection.iml" beforeDir="false" afterPath="$PROJECT_DIR$/edgeselection.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunctionCost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/DTO/FormForExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/DTO/FormForExcel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunctionLatency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunctionLatency.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/DTO/ServiceTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/DTO/ServiceTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/EdgeselectionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/EdgeselectionApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Functions/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Functions/Functions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/domain/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/domain/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/domain/Latency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/domain/Latency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/presentation/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/presentation/ApplicationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +58,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PATH_TO_GIT" value="C:\Users\exiwlen\AppData\Local\Programs\Git\bin\git.exe" />
+    <option name="PATH_TO_GIT" value="C:\Program Files\Git\bin\git.exe" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
@@ -107,9 +94,9 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -269,6 +256,8 @@
       <workItem from="1589368442572" duration="4852000" />
       <workItem from="1591092140527" duration="7163000" />
       <workItem from="1591107995374" duration="29651000" />
+      <workItem from="1591923273586" duration="314000" />
+      <workItem from="1591923606102" duration="4805000" />
     </task>
     <task id="LOCAL-00001" summary="basic analysis">
       <created>1581675551894</created>
@@ -320,29 +309,25 @@
     <option name="LAST_COMMIT_MESSAGE" value="basic analysis" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1412" y="282" key="#Assign_Data_Sources" timestamp="1582710931031">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1412" y="282" key="#Assign_Data_Sources/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582710931031" />
     <state x="-1266" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591105874072">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1266" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1591105874072" />
-    <state x="872" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582548070668" />
-    <state x="-1139" y="237" key="#com.intellij.ide.util.MemberChooser" timestamp="1585902510902">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state x="490" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1591924607894">
+      <screen x="0" y="0" width="1205" height="720" />
     </state>
+    <state x="490" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1205.720@0.0.1205.720" timestamp="1591924607894" />
     <state x="-1139" y="237" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1585902510902" />
     <state x="1041" y="319" key="#com.intellij.ide.util.MemberChooser/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1583938132557" />
+    <state x="439" y="253" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1591923442925">
+      <screen x="0" y="0" width="1205" height="720" />
+    </state>
+    <state x="439" y="253" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1205.720@0.0.1205.720" timestamp="1591923442925" />
     <state x="-1223" y="329" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1591107754315">
       <screen x="-1920" y="0" width="1858" height="1080" />
     </state>
     <state x="-1223" y="329" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1218.720/-1920.0.1858.1080@-1920.0.1858.1080" timestamp="1591107754315" />
     <state x="960" y="426" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1584438216931" />
-    <state x="1006" y="541" width="548" height="326" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582647686165">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1006" y="541" width="548" height="326" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582647686165" />
     <state x="-1385" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1591147891373">
       <screen x="-1920" y="0" width="1858" height="1080" />
     </state>
@@ -351,11 +336,11 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1293" y="210" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1591105936864" />
-    <state x="-1187" y="309" key="FileChooserDialogImpl" timestamp="1591145084103">
-      <screen x="-1920" y="0" width="1858" height="1080" />
+    <state x="475" y="206" key="FileChooserDialogImpl" timestamp="1591923351942">
+      <screen x="0" y="0" width="1205" height="720" />
     </state>
+    <state x="475" y="206" key="FileChooserDialogImpl/0.0.1205.720@0.0.1205.720" timestamp="1591923351942" />
     <state x="-1187" y="309" key="FileChooserDialogImpl/0.0.1218.720/-1920.0.1858.1080@-1920.0.1858.1080" timestamp="1591145084103" />
-    <state x="1010" y="400" key="FileChooserDialogImpl/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582548127142" />
     <state width="1805" height="297" key="GridCell.Tab.0.bottom" timestamp="1591606382244">
       <screen x="-1920" y="0" width="1858" height="1080" />
     </state>
@@ -424,15 +409,11 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state width="301" height="593" key="HiddenNamespacesPopup/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1591105860633" />
-    <state x="760" y="375" key="IDE.errors.dialog" timestamp="1582548176476">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="169" y="0" key="SettingsEditor" timestamp="1591923674846">
+      <screen x="0" y="0" width="1205" height="720" />
     </state>
-    <state x="760" y="375" key="IDE.errors.dialog/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582548176476" />
-    <state x="-1430" y="157" key="SettingsEditor" timestamp="1585259155323">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
+    <state x="169" y="0" key="SettingsEditor/0.0.1205.720@0.0.1205.720" timestamp="1591923674846" />
     <state x="-1430" y="157" key="SettingsEditor/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1585259155323" />
-    <state x="653" y="258" key="SettingsEditor/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582647097256" />
     <state width="937" height="548" key="XDebugger.FullValuePopup" timestamp="1591155502712">
       <screen x="-1920" y="0" width="1858" height="1080" />
     </state>
@@ -466,7 +447,6 @@
     </state>
     <state x="0" y="75" width="1232" height="594" maximized="true" key="dock-window-2/0.0.1218.720/-1920.0.1858.1080@-1920.0.1858.1080" timestamp="1591147613414" />
     <state x="0" y="75" width="1232" height="594" key="dock-window-2/0.0.1218.720/-1920.0.1858.1080@0.0.1218.720" timestamp="1591533984935" />
-    <state x="2474" y="455" width="1096" height="984" key="dock-window-2/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582814367490" />
     <state x="-1759" y="202" key="new project wizard" timestamp="1585260801595">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -475,12 +455,13 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-801" y="245" key="run.anything.popup/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1589369593807" />
-    <state x="-1297" y="238" width="840" height="799" key="search.everywhere.popup" timestamp="1591147307801">
-      <screen x="-1920" y="0" width="1858" height="1080" />
+    <state x="406" y="159" width="676" height="533" key="search.everywhere.popup" timestamp="1591926633774">
+      <screen x="0" y="0" width="1212" height="720" />
     </state>
+    <state x="404" y="159" width="672" height="533" key="search.everywhere.popup/0.0.1205.720@0.0.1205.720" timestamp="1591924662452" />
+    <state x="406" y="159" width="676" height="533" key="search.everywhere.popup/0.0.1212.720@0.0.1212.720" timestamp="1591926633774" />
     <state x="-1297" y="238" width="840" height="799" key="search.everywhere.popup/0.0.1218.720/-1920.0.1858.1080@-1920.0.1858.1080" timestamp="1591147307801" />
     <state x="-1276" y="229" width="840" height="769" key="search.everywhere.popup/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1589751093534" />
-    <state x="859" y="308" width="840" height="1034" key="search.everywhere.popup/2560.0.1080.1880/0.0.2560.1400@0.0.2560.1400" timestamp="1582548124279" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

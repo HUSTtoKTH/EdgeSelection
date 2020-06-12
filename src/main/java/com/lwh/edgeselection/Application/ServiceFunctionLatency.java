@@ -1,5 +1,6 @@
 package com.lwh.edgeselection.Application;
 
+import com.lwh.edgeselection.DTO.BinaryRepresent;
 import com.lwh.edgeselection.DTO.FormForExcel;
 import com.lwh.edgeselection.DTO.ServiceForm;
 import com.lwh.edgeselection.DTO.ServiceTable;
@@ -526,14 +527,42 @@ public class ServiceFunctionLatency {
         sw.stop();
         sw.start("MILP algorithm");
         filterTable.orderListByLatency();
+        int n = filterTable.getList().size();
         ServiceTable optimalComb = new ServiceTable();
         double optimalcost = -1;
-        int n = filterTable.getList().size();
-
-        PriorityQueue<ServiceTable> minHeap = new PriorityQueue<>(Comparator.comparingDouble(s -> s.getLatencySum()));
-
-
-
+        BinaryRepresent binaryRepresent1 = new BinaryRepresent(n,1);
+        binaryRepresent1.getBinaryRepresent()[0] = 1;
+        binaryRepresent1.setLatencySum(filterTable.getList().get(0).getLatency().getDelay());
+        BinaryRepresent binaryRepresent0 = new BinaryRepresent(n,1);
+        binaryRepresent0.getBinaryRepresent()[0] = 0;
+        binaryRepresent0.setLatencySum(filterTable.getList().get(1).getLatency().getDelay());
+        PriorityQueue<BinaryRepresent> minHeap = new PriorityQueue<>(Comparator.comparingDouble(s -> s.getLatencySum()));
+        minHeap.add(binaryRepresent0);
+        minHeap.add(binaryRepresent1);
+        while(!minHeap.isEmpty()){
+            BinaryRepresent binaryRepresent = minHeap.poll();
+            ServiceTable cur = binaryRepresent.transfer(filterTable);
+            int valid = cur.validBnB(application);
+            if(valid == 1){
+                optimalComb = cur;
+                break;
+            }
+            if(valid == -1){
+                continue;
+            }
+            int preCount = binaryRepresent.getValidCount();
+            double preLatency = cur.getLatencySum();
+            if(valid == 0 && preCount < n){
+                BinaryRepresent select = new BinaryRepresent(n,preCount+1);
+                select.getBinaryRepresent()[preCount] = 1;
+                select.setLatencySum(preLatency+filterTable.getList().get(preCount).getLatency().getDelay());
+                if(preCount != n-1){
+                    BinaryRepresent unselect = new BinaryRepresent(n,preCount+1);
+                    unselect.getBinaryRepresent()[preCount] = 0;
+                    unselect.setLatencySum(preLatency+filterTable.getList().get(preCount+1).getLatency().getDelay());
+                }
+            }
+        }
         optimalcost = optimalComb.newCalculateCost();
         sw.stop();
         formForExcel.setTime(sw.getTotalTimeSeconds());
