@@ -20,5 +20,7 @@ public class FormForExcel {
     private double cost;
     private int num_EIS_per_Country;
     private int num_CSP_per_EIS;
+    private double latency_avg;
+
 
 }

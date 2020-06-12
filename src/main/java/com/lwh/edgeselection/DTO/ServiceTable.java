@@ -17,7 +17,8 @@ public class ServiceTable {
     private Map<CSP, TreeSet<EIS>> CSPmap = new HashMap<>();
     private HashSet<EIS> usedEIS = new HashSet<>();
     private HashSet<CSP> usedCSP = new HashSet<>();
-    private List<ServiceForm> list = new ArrayList<>();
+    private LinkedList<ServiceForm> list = new LinkedList<>();
+    private double latencySum = 0;
 
     /**
      * Add.
@@ -25,7 +26,9 @@ public class ServiceTable {
      * @param serviceForm the service form
      */
     public void add(ServiceForm serviceForm){
+        if(serviceForm == null)return;
         list.add(serviceForm);
+        latencySum = latencySum + serviceForm.getLatency().getDelay();
         if(usedCSP.add(serviceForm.getCsp())){
             Comparator<EIS> compEIS = (EIS e1, EIS e2) ->{
                 if(e1.getId() == e2.getId())
@@ -58,6 +61,24 @@ public class ServiceTable {
         }else {
             TreeSet<CSP> csps = EISmap.get(serviceForm.getEis());
             csps.add(serviceForm.getCsp());
+        }
+    }
+
+    public void remove(ServiceForm serviceForm){
+        if(serviceForm == null)return;
+        list.remove(serviceForm);
+        latencySum = latencySum - serviceForm.getLatency().getDelay();
+        if(EISmap.get(serviceForm.getEis()).size() == 1){
+            EISmap.remove(serviceForm.getEis());
+            usedEIS.remove(serviceForm.getEis());
+        }else {
+            EISmap.get(serviceForm.getEis()).remove(serviceForm.getCsp());
+        }
+        if(CSPmap.get(serviceForm.getCsp()).size() == 1){
+            CSPmap.remove(serviceForm.getCsp());
+            usedCSP.remove(serviceForm.getCsp());
+        }else {
+            CSPmap.get(serviceForm.getCsp()).remove(serviceForm.getEis());
         }
     }
 
@@ -199,7 +220,7 @@ public class ServiceTable {
                 }
             }
         }
-        getList().remove(ans);
+        remove(ans);
         return ans;
     }
 
@@ -233,7 +254,7 @@ public class ServiceTable {
                 }
             }
         }
-        getList().remove(ans);
+        remove(ans);
         return ans;
     }
 
@@ -256,7 +277,7 @@ public class ServiceTable {
                 ans = serviceForm;
             }
         }
-        getList().remove(ans);
+        remove(ans);
         return ans;
     }
 
@@ -290,7 +311,7 @@ public class ServiceTable {
                 ans = serviceForm;
             }
         }
-        getList().remove(ans);
+        remove(ans);
         return ans;
     }
 
@@ -312,7 +333,7 @@ public class ServiceTable {
                 }
             }
         }
-        getList().remove(ans);
+        remove(ans);
         return ans;
     }
 
@@ -343,5 +364,98 @@ public class ServiceTable {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    public boolean checkBudget(double budget) {
+        return newCalculateCost() < budget;
+    }
+
+    public double calculateLatency() {
+        return latencySum/list.size();
+    }
+
+    public void removeExpensive() {
+        Collections.sort(list, Comparator.comparingDouble(p -> p.getCost()));
+        remove(list.getLast());
+    }
+
+    public ServiceForm retrieveFastestRowBasedOnCSP(CSP csp) {
+        ServiceForm ans = null;
+        double fastest = 0;
+        for(ServiceForm serviceForm:list){
+            if(serviceForm.getCsp().equals(csp))
+            {
+                double current = serviceForm.getLatency().getDelay();
+                if(fastest == 0 || fastest > current){
+                    fastest = current;
+                    ans = serviceForm;
+                }
+            }
+        }
+        remove(ans);
+        return ans;
+    }
+
+    public ServiceForm retrieveFastestLineWithNewEIS(HashSet<EIS> usedEIS) {
+        ServiceForm ans = null;
+        double fastest = 0;
+        for(ServiceForm serviceForm:list){
+            if(usedEIS.contains(serviceForm.getEis())){
+                continue;
+            }
+            double current = serviceForm.getLatency().getDelay();
+            if(fastest == 0 || fastest > current){
+                fastest = current;
+                ans = serviceForm;
+            }
+        }
+        remove(ans);
+        return ans;
+    }
+
+    public ServiceForm retrieveFastestRowBasedOnEIS(EIS unsatistfiedEIS) {
+        ServiceForm ans = null;
+        double fastest = 0;
+        for(ServiceForm serviceForm:list){
+            if(serviceForm.getEis().equals(unsatistfiedEIS)){
+                double current = serviceForm.getLatency().getDelay();
+                if(fastest == 0 || fastest > current){
+                    fastest = current;
+                    ans = serviceForm;
+                }
+            }
+        }
+        if(ans == null){
+
+        }
+        remove(ans);
+        return ans;
+    }
+
+    public void removeByEIS(EIS unsatistfiedEIS){
+        Iterator<ServiceForm> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            ServiceForm serviceForm = iterator.next();
+            if(serviceForm.getEis().equals(unsatistfiedEIS)){
+                latencySum = latencySum - serviceForm.getLatency().getDelay();
+                if(EISmap.get(serviceForm.getEis()).size() == 1){
+                    EISmap.remove(serviceForm.getEis());
+                    usedEIS.remove(serviceForm.getEis());
+                }else {
+                    EISmap.get(serviceForm.getEis()).remove(serviceForm.getCsp());
+                }
+                if(CSPmap.get(serviceForm.getCsp()).size() == 1){
+                    CSPmap.remove(serviceForm.getCsp());
+                    usedCSP.remove(serviceForm.getCsp());
+                }else {
+                    CSPmap.get(serviceForm.getCsp()).remove(serviceForm.getEis());
+                }
+                iterator.remove();
+            }
+        }
+    }
+
+    public void orderListByLatency(){
+        Collections.sort(list,Comparator.comparingDouble(s -> s.getLatency().getDelay()));
     }
 }

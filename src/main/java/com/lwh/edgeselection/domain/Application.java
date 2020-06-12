@@ -60,16 +60,16 @@ public class Application implements Serializable {
 //    private String[] objectives;
     private int num_EIS_per_Country;
     private int num_CSP_per_EIS;
-    private double capacity;
+    private double budget;
     private int complexity;
 
     public Application() {
     }
 
-    public Application(int num_EIS_per_Country,int num_CSP_per_EIS, double capacity, double latency) {
+    public Application(int num_EIS_per_Country,int num_CSP_per_EIS, double budget, double latency) {
         this.num_EIS_per_Country = num_EIS_per_Country;
         this.num_CSP_per_EIS = num_CSP_per_EIS;
-        this.capacity = capacity;
+        this.budget = budget;
         this.latency = latency;
     }
 

@@ -2,19 +2,14 @@ package com.lwh.edgeselection.presentation;
 
 
 import com.lwh.edgeselection.Application.*;
-import com.lwh.edgeselection.DTO.FormForExcel;
 import com.lwh.edgeselection.DTO.ServiceForm;
 import com.lwh.edgeselection.DTO.ServiceTable;
 import com.lwh.edgeselection.Functions.Functions;
 import com.lwh.edgeselection.domain.*;
 import com.lwh.edgeselection.repository.ApplicationRepository;
-import com.lwh.edgeselection.repository.EISRepository;
-import com.lwh.edgeselection.repository.LatencyRepository;
-import com.lwh.edgeselection.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +32,7 @@ public class ApplicationController {
     @Autowired
     private ApplicationRepository applicationRepository;
     @Autowired
-    private ServiceFunction serviceFunction;
+    private ServiceFunctionCost serviceFunctionCost;
     @Autowired
     private TableService tableService;
 

@@ -39,6 +39,15 @@ public class Latency implements Serializable {
         this.delay = delay;
     }
 
+    public Latency(Long areaId, Long cspId, Long serviceId, double delay, double low_bound, double up_bound) {
+        this.areaId = areaId;
+        this.cspId = cspId;
+        this.serviceId = serviceId;
+        this.delay = delay;
+        this.low_bound = low_bound;
+        this.up_bound = up_bound;
+    }
+
 
     public Latency(Long areaId, Long cspId, Long serviceId) {
         this.areaId = areaId;

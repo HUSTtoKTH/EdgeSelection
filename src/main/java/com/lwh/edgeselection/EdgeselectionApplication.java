@@ -1,6 +1,6 @@
 package com.lwh.edgeselection;
 
-import com.lwh.edgeselection.Application.ServiceFunction;
+import com.lwh.edgeselection.Application.ServiceFunctionCost;
 import com.lwh.edgeselection.DTO.FormForExcel;
 import com.lwh.edgeselection.domain.*;
 import org.springframework.boot.SpringApplication;
@@ -59,47 +59,47 @@ public class EdgeselectionApplication {
 }
 
 class Exhaustive implements Callable<FormForExcel> {
-    ServiceFunction serviceFunction;
+    ServiceFunctionCost serviceFunctionCost;
     Application application;
 
-    public Exhaustive(ServiceFunction serviceFunction, Application application) {
-        this.serviceFunction = serviceFunction;
+    public Exhaustive(ServiceFunctionCost serviceFunctionCost, Application application) {
+        this.serviceFunctionCost = serviceFunctionCost;
         this.application = application;
     }
 
     @Override
     public FormForExcel call() throws Exception {
-        return serviceFunction.bruteForce(application);
+        return serviceFunctionCost.bruteForce(application);
     }
 }
 
 class BestFit implements Callable<FormForExcel> {
-    ServiceFunction serviceFunction;
+    ServiceFunctionCost serviceFunctionCost;
     Application application;
 
-    public BestFit(ServiceFunction serviceFunction, Application application) {
-        this.serviceFunction = serviceFunction;
+    public BestFit(ServiceFunctionCost serviceFunctionCost, Application application) {
+        this.serviceFunctionCost = serviceFunctionCost;
         this.application = application;
     }
 
     @Override
     public FormForExcel call() throws Exception {
-        return serviceFunction.BestFit(application);
+        return serviceFunctionCost.BestFit(application);
     }
 }
 
 class BestFitV2 implements Callable<FormForExcel> {
-    ServiceFunction serviceFunction;
+    ServiceFunctionCost serviceFunctionCost;
     Application application;
 
-    public BestFitV2(ServiceFunction serviceFunction, Application application) {
-        this.serviceFunction = serviceFunction;
+    public BestFitV2(ServiceFunctionCost serviceFunctionCost, Application application) {
+        this.serviceFunctionCost = serviceFunctionCost;
         this.application = application;
     }
 
     @Override
     public FormForExcel call() throws Exception {
-        return serviceFunction.BestFitV2(application);
+        return serviceFunctionCost.BestFitV2(application);
     }
 }
 

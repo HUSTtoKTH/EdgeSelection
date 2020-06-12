@@ -98,14 +98,34 @@ public class Functions {
     public static List<ServiceForm> filterTable(List<ServiceForm> original,
                                                 Set<CSP> unpreferedCSPs,
                                                 List<EIS> statisfiedEIS,
+                                                double latency,
+                                                double cost,
+                                                int numEIS){
+        Iterator<ServiceForm> it= original.iterator();
+        while(it.hasNext()){
+            ServiceForm serviceForm = it.next();
+            if(
+                    serviceForm.getLatency().getUp_bound() > latency
+                    ||    !statisfiedEIS.contains(serviceForm.getEis())
+                    ||    unpreferedCSPs.contains(serviceForm.getCsp())
+                    ||    serviceForm.getCost()/numEIS > cost
+            ){
+                it.remove();
+            }
+        }
+        return original;
+    }
+    public static List<ServiceForm> filterTable(List<ServiceForm> original,
+                                                Set<CSP> unpreferedCSPs,
+                                                List<EIS> statisfiedEIS,
                                                 double latency){
         Iterator<ServiceForm> it= original.iterator();
         while(it.hasNext()){
             ServiceForm serviceForm = it.next();
             if(
-                    serviceForm.getLatency().getDelay() > latency
-                    ||    !statisfiedEIS.contains(serviceForm.getEis())
-                    ||    unpreferedCSPs.contains(serviceForm.getCsp())
+                    serviceForm.getLatency().getUp_bound() > latency
+                            ||    !statisfiedEIS.contains(serviceForm.getEis())
+                            ||    unpreferedCSPs.contains(serviceForm.getCsp())
             ){
                 it.remove();
             }
@@ -453,6 +473,9 @@ public class Functions {
 
         cell = row.createCell(11);
         cell.setCellValue(aForm.getNum_CSP_per_EIS());
+
+        cell = row.createCell(12);
+        cell.setCellValue(aForm.getLatency_avg());
 
     }
 
