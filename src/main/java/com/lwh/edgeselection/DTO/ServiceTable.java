@@ -120,7 +120,7 @@ public class ServiceTable {
      * @param num the num
      * @return the boolean
      */
-    public boolean checkNumberOfCSP(int num) {
+    public boolean checkNumberOfCSPGreaterEqual(int num) {
         for (Set<CSP> csps : EISmap.values()) {
             if (csps.size() < num) {
                 return false;
@@ -129,6 +129,23 @@ public class ServiceTable {
         return true;
     }
 
+    public boolean checkNumberOfCSPGreater(int num) {
+        for (Set<CSP> csps : EISmap.values()) {
+            if (csps.size() > num) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkNumberOfCSPLess(int num) {
+        for (Set<CSP> csps : EISmap.values()) {
+            if (csps.size() < num) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Check single eis number of csp boolean.
      *
@@ -148,7 +165,7 @@ public class ServiceTable {
      * @return the boolean
      */
     public boolean checkReliability(int numOfEIS, int numOfCSP){
-        return checkNumberOfEIS(numOfEIS) && checkNumberOfCSP(numOfCSP);
+        return checkNumberOfEIS(numOfEIS) && checkNumberOfCSPGreaterEqual(numOfCSP);
     }
 
     /**
@@ -290,7 +307,7 @@ public class ServiceTable {
      * @return the service form
      */
     public ServiceForm retrieveCheapestLineWithNewEIS(ServiceTable serviceTable, int num_CSP) {
-        ServiceForm ans = new ServiceForm();
+        ServiceForm ans = null;
         double cheapest = 0;
         for(ServiceForm serviceForm:list) {
             if (serviceTable.getUsedEIS().contains(serviceForm.getEis())) {
@@ -323,7 +340,7 @@ public class ServiceTable {
      * @return the service form
      */
     public ServiceForm retrieveCheapestRowBasedOnEIS(EIS eis){
-        ServiceForm ans = new ServiceForm();
+        ServiceForm ans = null;
         double cheapest = 0;
         for(ServiceForm serviceForm:list){
             if(serviceForm.getEis().equals(eis)){
@@ -464,10 +481,19 @@ public class ServiceTable {
         if(!checkBudget(application.getBudget())){
             return -1;
         }
-        if(!checkNumberOfEIS(application.getNum_EIS_per_Country())){
+//        if(numberOfEIS() > application.getNum_EIS_per_Country()){
+//            return -1;
+//        }
+        if(numberOfEIS() < application.getNum_EIS_per_Country()){
             return 0;
         }
-        if(!checkNumberOfCSP(application.getNum_CSP_per_EIS())){
+//        if(checkNumberOfCSPGreater(application.getNum_CSP_per_EIS())){
+//            return -1;
+//        }
+        if(checkNumberOfCSPLess(application.getNum_CSP_per_EIS()) ){
+            return 0;
+        }
+        if(!checkCSP(application.getPreferedCSPs())){
             return 0;
         }
         return 1;

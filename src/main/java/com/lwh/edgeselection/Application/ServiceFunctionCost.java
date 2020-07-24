@@ -425,7 +425,7 @@ public class ServiceFunctionCost {
         while(!optimalComb.checkNumberOfEIS(application.getNum_EIS_per_Country())){
             optimalComb.add(filterTable.retrieveCheapestLineWithNewEIS(optimalComb));
         }
-        while(!optimalComb.checkNumberOfCSP(application.getNum_CSP_per_EIS())){
+        while(!optimalComb.checkNumberOfCSPGreaterEqual(application.getNum_CSP_per_EIS())){
             EIS unsatistfiedEIS = optimalComb.findLowReliabilityService(application.getNum_CSP_per_EIS());
             optimalComb.add(filterTable.retrieveCheapestRowBasedOnEIS(unsatistfiedEIS));
         }
@@ -612,7 +612,7 @@ public class ServiceFunctionCost {
         while(!optimalComb.checkNumberOfEIS(application.getNum_EIS_per_Country())){
             optimalComb.add(filterTable.retrieveCheapestLineWithNewEIS(optimalComb, application.getNum_CSP_per_EIS()));
         }
-        while(!optimalComb.checkNumberOfCSP(application.getNum_CSP_per_EIS())){
+        while(!optimalComb.checkNumberOfCSPGreaterEqual(application.getNum_CSP_per_EIS())){
             EIS unsatistfiedEIS = optimalComb.findLowReliabilityService(application.getNum_CSP_per_EIS());
             optimalComb.add(filterTable.retrieveCheapestRowBasedOnEIS(unsatistfiedEIS));
         }

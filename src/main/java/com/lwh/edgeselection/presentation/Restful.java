@@ -10,9 +10,8 @@ import com.lwh.edgeselection.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -22,7 +21,8 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-public class ApplicationController {
+@RequestMapping("/api")
+public class Restful {
     @Autowired
     private EISService eisService;
     @Autowired
@@ -40,28 +40,28 @@ public class ApplicationController {
     public String appareaget(Model model) {
         List<Area> areaList = areaService.getAll();
         model.addAttribute("areaList", areaList);
-        return "apparea";
+        return "application";
     }
 
     @PostMapping("/appareainput")
-    public String appareapost(Application application, Model model, RedirectAttributes attributes, HttpSession session) {
+    public @ResponseBody String appareapost(Application application, Model model, HttpSession session) {
         Set<Area> areaSelect = application.getAppareas();
         if (areaSelect != null) {
 //            applicationRepository.save(application);
         }
         List<CSP> CSPList = cspService.filterArea(areaSelect);
         session.setAttribute("area",areaSelect);
-        attributes.addAttribute("csp",CSPList);
-        return "redirect:/appcspinput";
-    }
-
-
-    @GetMapping("/appcspinput")
-    public String appcspget(@RequestParam(value = "csp")List<CSP> CSPList,
-                              Model model, HttpSession session) {
         model.addAttribute("CSPList",CSPList);
-        return "appcsp";
+        return "application::table_refresh";
     }
+
+
+//    @GetMapping("/appcspinput")
+//    public String appcspget(@RequestParam(value = "csp")List<CSP> CSPList,
+//                            Model model, HttpSession session) {
+//        model.addAttribute("CSPList",CSPList);
+//        return "appcsp";
+//    }
 
     @PostMapping("/appcspinput")
     public String appcsppost(Application application, Model model, HttpSession session) {

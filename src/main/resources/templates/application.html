@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>CSP</title>
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <style>
+        .ui-loader
+        {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="header :: header">...</div>
+
+<script type="text/javascript" th:inline="javascript">
+    function localRefresh() {
+        var url = '/v2/appareainput';
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: $('#form1').serialize(),
+            dataType: "html",
+            error:function(data){
+                alert("error！！:"+data);
+            },
+            success: function (data) {
+                $("#table_refresh").html(data);
+                // multiselect("refresh");
+            // .selectmenu('refresh', true)
+            //     $('select').selectmenu('refresh', true);
+            //     $('select').selectmenu('disable');
+                $('#nocspsId').selectmenu();
+                $('#nocspsId').selectmenu('refresh',true);
+                $('#cspsId').selectmenu();
+                $('#cspsId').selectmenu('refresh',true);
+            }
+        });
+    }
+
+    function localResult() {
+        var url = selectionObjective();
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: $('#form1').serialize(),
+            dataType: "html",
+            error:function(data){
+                alert("error！！:"+data);
+            },
+            success: function (data) {
+                if(null != result && "" != result){
+                    $("#result_refresh").html(data);
+                    var x = document.getElementById("result_refresh");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    }
+                    if ($('#result tr').length == 1) {
+                        alert("no result");
+                    }
+                }else{
+                    alert("no result");
+                }
+
+
+            }
+        });
+
+    }
+    function selectionObjective() {
+        var objective = document.getElementsByName("selection-objective");
+        var selectedObjective;
+        if(objective[0].checked)
+            selectedObjective = objective[0].value;
+        if(objective[1].checked)
+            selectedObjective = objective[1].value;
+        return '/v2/'+selectedObjective;
+    }
+
+
+</script>
+
+<div data-role="main"  class="ui-content container">
+    <form id="form1" th:action="@{/applicationinput}" method="post">
+        <div class="ui-grid-a ui-responsive">
+            <div class="ui-block-a ui-responsive">
+                <label for="areaId">Areas</label>
+                <!--                onChange="this.form.submit()"-->
+                <select name="appareas" id="areaId" multiple="multiple" data-native-menu="false" onChange="localRefresh()">
+                    <option th:each="area : ${areaList}"
+                            th:value="${area.id}"
+                            th:text="${area.name}">area
+                    </option>
+                </select>
+            </div>
+
+            <div id="table_refresh" th:fragment="table_refresh">
+                <div class="ui-grid-a ui-responsive">
+                    <div class="ui-block-a">
+                        <label for="cspsId">Mandatory CSPs</label>
+                        <select name="preferedCSPs" id="cspsId" multiple="multiple" data-native-menu="false">
+                            <option th:each="csp : ${CSPList}"
+                                    th:value="${csp.id}"
+                                    th:text="${csp.id}+' '+${csp.name}">csp
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="ui-block-b">
+                        <label for="nocspsId">Banned CSPs</label>
+                        <select name="unpreferedCSPs" id="nocspsId" multiple="multiple" data-native-menu="false">
+                            <option th:each="csp : ${CSPList}"
+                                    th:value="${csp.id}"
+                                    th:text="${csp.id}+' '+${csp.name}">csp
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-a ui-responsive">
+            <div class="ui-block-a ">
+                <!--                <div class="ui-field-contain">-->
+                <label class="control-label" for="num_EIS_per_Country">EIS/Area</label>
+                <input type="range" name="num_EIS_per_Country" id="num_EIS_per_Country"  value="1" min="1" max="5" data-show-value="true" data-popup-enabled="true" data-highlight="true">
+                <!--                </div>-->
+            </div>
+            <div class="ui-block-b  ">
+                <!--                <div class="ui-field-contain">-->
+                <label class="control-label" for="num_CSP_per_EIS">CSP/EIS</label>
+                <input type="range" name="num_CSP_per_EIS" id="num_CSP_per_EIS" value="1" min="1" max="5" data-show-value="true" data-popup-enabled="true" data-highlight="true">
+                <!--                </div>-->
+
+            </div>
+        </div>
+
+        <div class="ui-grid-a ui-responsive">
+            <div class="ui-block-a ">
+                <!--                <div class="ui-field-contain">-->
+                <label for="num_cpusId">CPU Core</label>
+                <input type="range" name="num_cpus" id="num_cpusId" value="1" min="1" max="8" data-show-value="true" data-popup-enabled="true" data-highlight="true">
+                <!--                </div>-->
+            </div>
+            <div class="ui-block-b  ">
+                <!--                <div class="ui-field-contain">-->
+                <label for="bandwidthId">Network Bandwidth/Mbps</label>
+                <input type="range" name="bandwidth" id="bandwidthId" value="100" min="100" max="10000" step="1" data-show-value="true" data-popup-enabled="true" data-highlight="true">
+                <!--                </div>-->
+            </div>
+        </div>
+        <div class="ui-grid-a ui-responsive">
+            <div class="ui-block-a ">
+                <!--                <div class="ui-field-contain">-->
+                <label for="cpu_frequencyId">CPU frequency/GHz</label>
+                <input type="range" name="cpu_frequency" id="cpu_frequencyId" value="1.8" min="1.8" max="4" step="0.1" data-show-value="true" data-popup-enabled="true" data-highlight="true">
+                <!--                </div>-->
+            </div>
+            <div class="ui-block-b  ">
+                <!--                <div class="ui-field-contain">-->
+                <label for="disk_sizeId">Disk/GB</label>
+                <input type="range" name="disk_size" id="disk_sizeId" value="100" min="100" max="10000" step="1" data-show-value="true" data-popup-enabled="true" data-highlight="true">
+                <!--                </div>-->
+            </div>
+        </div>
+
+        <div class="ui-grid-a ui-responsive">
+            <div class="ui-block-a ">
+                <!--        <div class="ui-field-contain">-->
+                <label for="mem_sizeId">Memory/MB</label>
+                <input type="range" name="mem_size" id="mem_sizeId" value="10" min="10" max="10000" step="1" data-show-value="true" data-popup-enabled="true" data-highlight="true">
+                <!--        </div>-->
+
+            </div>
+            <div class="ui-block-b  ">
+                <!--        <div class="ui-field-contain">-->
+                <label class="control-label" for="latency">Latency/ms</label>
+                <input type="number" step="0.01" name="latency" id="latency" class="form-control" value="100">
+                <!--        </div>-->
+            </div>
+        </div>
+
+
+        <div class="ui-grid-a ui-responsive">
+            <div class="ui-block-a " style="padding-right: 30px">
+<!--                <div class="ui-field-contain">-->
+                    <label for="gpuId">GPU</label>
+                    <input type="text" name="gpu" id="gpuId" class="form-control">
+<!--                </div>-->
+
+            </div>
+            <div class="ui-block-b  ">
+<!--                <div class="ui-field-contain">-->
+                    <label for="fpgaId">FPGA</label>
+                    <input type="text" name="fpga" id="fpgaId" class="form-control">
+<!--                </div>-->
+            </div>
+        </div>
+
+
+        <!--        <div class="ui-field-contain">-->
+        <!--            <label for="costId">Cost/</label>-->
+        <!--            <select id = "unitType">-->
+        <!--                <option selected>s</option>-->
+        <!--                <option>min</option>-->
+        <!--                <option>h</option>-->
+        <!--                <option>day</option>-->
+        <!--            </select>-->
+        <!--            <input type="number" name="cost_second" id="costId" class="form-control">-->
+        <!--        </div>-->
+        <div class="ui-grid-a ui-responsive">
+            <div class="ui-block-a" style=" padding-right: 30px">
+
+                    <div class="ui-grid-a ui-responsive">
+
+                        <div class="ui-block-a" style="width:80%;">
+<!--                            <div class="ui-field-contain">-->
+                            <label for="budgetId">Budget</label>
+                            <input type="number" step="0.01" name="budget" id="budgetId" class="form-control" value="100">
+<!--                            </div>-->
+                        </div>
+
+                        <div class="ui-block-b" style="width:20%;padding-top: 20px">
+                            <select id = "unitType">
+                                <option selected>/s</option>
+                                <option>/min</option>
+                                <option>/h</option>
+                                <option>/day</option>
+                            </select>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="ui-block-b">
+                <div data-role="fieldcontain">
+<!--                    <div data-role="navbar">-->
+<!--                        <ul>-->
+<!--                            <li><a href="#" data-icon="plus" data-role="button">Button1</a></li>-->
+<!--                            <li><a href="#" data-icon="minus" data-role="button">Button2</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <legend>Selection objective:</legend>
+                        <input type="radio" name="selection-objective" id="radio-choice-21" value="cost" checked="checked" />
+                        <label for="radio-choice-21">Cost</label>
+
+                        <input type="radio" name="selection-objective" id="radio-choice-22" value="latency"  />
+                        <label for="radio-choice-22">Latency</label>
+                    </fieldset>
+                </div>
+            </div>
+
+        </div>
+<!--        <div class="ui-field-contain">-->
+<!--            <label for="specialId">Special Requirements</label>-->
+<!--            <input type="text" name="special" id="specialId" class="form-control">-->
+<!--        </div>-->
+
+
+
+        <p class="ui-field-contain">
+            <button type="submit"   class="btn ui-btn ui-btn-b"   onclick="localResult();">Submit</button>
+        </p>
+    </form>
+
+    <div id="result_refresh" style="display: none">
+        <div th:fragment="result_refresh">
+        <table id="result"  class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>EIS</th>
+                <th>CSP</th>
+                <th>Area</th>
+                <th>Latency/ms</th>
+                <th>Cost/$</th>
+            </tr>
+            </thead>
+            <tbody th:each="service,itemStat:${result}">
+            <tr>
+                <td th:text="${itemStat.count}" >1</td>
+                <td th:text="${service.eis.id}">keyvalue</td>
+                <td th:text="${service.csp.id}">keyvalue</td>
+                <td th:text="${service.area.name}">keyvalue</td>
+                <td th:text="${#numbers.formatDecimal(service.latency.delay, 0, 2)}">keyvalue</td>
+                <td th:text="${#numbers.formatDecimal(service.cost, 0, 2)}">keyvalue</td>
+            </tr>
+        </table>
+        </div>
+    </div>
+
+</div>
+
+<div th:insert="footer :: footer">...</div>
+
+</body>
+</html>

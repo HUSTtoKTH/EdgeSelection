@@ -62,7 +62,7 @@ public class Functions {
 
 
     public static boolean checkReliability(ServiceTable serviceTable, int numOfEIS, int numOfCSP){
-        return serviceTable.checkNumberOfEIS(numOfEIS) && serviceTable.checkNumberOfCSP(numOfCSP);
+        return serviceTable.checkNumberOfEIS(numOfEIS) && serviceTable.checkNumberOfCSPGreaterEqual(numOfCSP);
     }
     /**
      * Calculate cost double.
@@ -99,8 +99,7 @@ public class Functions {
                                                 Set<CSP> unpreferedCSPs,
                                                 List<EIS> statisfiedEIS,
                                                 double latency,
-                                                double cost,
-                                                int numEIS){
+                                                double cost){
         Iterator<ServiceForm> it= original.iterator();
         while(it.hasNext()){
             ServiceForm serviceForm = it.next();
@@ -108,7 +107,7 @@ public class Functions {
                     serviceForm.getLatency().getUp_bound() > latency
                     ||    !statisfiedEIS.contains(serviceForm.getEis())
                     ||    unpreferedCSPs.contains(serviceForm.getCsp())
-                    ||    serviceForm.getCost()/numEIS > cost
+                    ||    serviceForm.getCost() > cost
             ){
                 it.remove();
             }

@@ -2,6 +2,8 @@ package com.lwh.edgeselection.presentation;
 
 
 import com.lwh.edgeselection.Application.*;
+import com.lwh.edgeselection.DTO.BinaryRepresent;
+import com.lwh.edgeselection.DTO.FormForExcel;
 import com.lwh.edgeselection.DTO.ServiceForm;
 import com.lwh.edgeselection.DTO.ServiceTable;
 import com.lwh.edgeselection.Functions.Functions;
@@ -10,19 +12,18 @@ import com.lwh.edgeselection.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.StopWatch;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
-public class ApplicationController {
+@RequestMapping("/v2")
+public class ApplicationControllerV2 {
     @Autowired
     private EISService eisService;
     @Autowired
@@ -40,54 +41,41 @@ public class ApplicationController {
     public String appareaget(Model model) {
         List<Area> areaList = areaService.getAll();
         model.addAttribute("areaList", areaList);
-        return "apparea";
+        return "application";
     }
 
     @PostMapping("/appareainput")
-    public String appareapost(Application application, Model model, RedirectAttributes attributes, HttpSession session) {
+    public String appareapost(Application application, Model model, HttpSession session) {
         Set<Area> areaSelect = application.getAppareas();
         if (areaSelect != null) {
 //            applicationRepository.save(application);
         }
         List<CSP> CSPList = cspService.filterArea(areaSelect);
         session.setAttribute("area",areaSelect);
-        attributes.addAttribute("csp",CSPList);
-        return "redirect:/appcspinput";
-    }
-
-
-    @GetMapping("/appcspinput")
-    public String appcspget(@RequestParam(value = "csp")List<CSP> CSPList,
-                              Model model, HttpSession session) {
         model.addAttribute("CSPList",CSPList);
-        return "appcsp";
+        return "application::table_refresh";
     }
 
-    @PostMapping("/appcspinput")
-    public String appcsppost(Application application, Model model, HttpSession session) {
-        Set<CSP> likeCSP = application.getPreferedCSPs();
-        Set<CSP> unlikeCSP = application.getUnpreferedCSPs();
-        session.setAttribute("likeCSP",likeCSP);
-        session.setAttribute("unlikeCSP",unlikeCSP);
-        return "redirect:/appinput";
-    }
-
-    @GetMapping("/appinput")
-    public String appget(Model model, HttpSession session) {
-        return "appservice";
-    }
 
     @PostMapping("/appinput")
-//    @ResponseBody
-    public String apppost(Application application, Model model, HttpSession session) {
-        application.setPreferedCSPs((Set<CSP>) session.getAttribute("likeCSP"));
-        application.setUnpreferedCSPs((Set<CSP>) session.getAttribute("unlikeCSP"));
-        application.setAppareas((Set<Area>) session.getAttribute("area"));
-//        applicationRepository.save(application);
+    public String apppost(Application application, Model model) {
         ServiceTable result = BestFitV2ForWeb(application);
         model.addAttribute("result",result.getList());
-        return "selectionoutput";
-//        return result.toString();
+        return "application::result_refresh";
+    }
+
+    @PostMapping("/cost")
+    public String cost(Application application, Model model) {
+        ServiceTable result = BestFitV2ForWeb(application);
+        model.addAttribute("result",result.getList());
+        return "application::result_refresh";
+    }
+
+    @PostMapping("/latency")
+    public String latency(Application application, Model model) {
+        ServiceTable result = MILP(application);
+        model.addAttribute("result",result.getList());
+        return "application::result_refresh";
     }
 
     public ServiceTable bruteForceForWeb(Application application){
@@ -162,19 +150,95 @@ public class ApplicationController {
         filterTable = new ServiceTable();
         filterTable.addAll(testTable);
         ServiceTable optimalComb = new ServiceTable();
-        double optimalcost = -1;
         int n = filterTable.getList().size();
         for(CSP csp:likeCSP){
             optimalComb.add(filterTable.retrieveCheapestRowBasedOnCSP(csp, application.getNum_CSP_per_EIS()));
         }
         while(!optimalComb.checkNumberOfEIS(application.getNum_EIS_per_Country())){
-            optimalComb.add(filterTable.retrieveCheapestLineWithNewEIS(optimalComb, application.getNum_CSP_per_EIS()));
+            ServiceForm serviceForm = filterTable.retrieveCheapestLineWithNewEIS(optimalComb, application.getNum_CSP_per_EIS());
+            if(serviceForm != null){
+                optimalComb.add(serviceForm);
+            }else {
+                return new ServiceTable();
+            }
+
         }
         while(!optimalComb.checkNumberOfCSPGreaterEqual(application.getNum_CSP_per_EIS())){
             EIS unsatistfiedEIS = optimalComb.findLowReliabilityService(application.getNum_CSP_per_EIS());
-            optimalComb.add(filterTable.retrieveCheapestRowBasedOnEIS(unsatistfiedEIS));
+            ServiceForm serviceForm = filterTable.retrieveCheapestRowBasedOnEIS(unsatistfiedEIS);
+            if(serviceForm != null){
+                optimalComb.add(serviceForm);
+            }else {
+                return new ServiceTable();
+            }
         }
-        optimalcost = optimalComb.newCalculateCost();
+        return optimalComb;
+    }
+
+    public ServiceTable MILP(Application application){
+        Set<CSP> likeCSP= application.getPreferedCSPs();
+        Set<CSP> unlikeCSP= application.getUnpreferedCSPs();
+        List<ServiceForm> testTable = tableService.retriveAllServiceByAreasIn(application.getAppareas());
+        ServiceTable originalTable = new ServiceTable();
+        originalTable.addAll(testTable);
+        List<EIS> testEIS = eisService.findByCapacity(application.getBandwidth(),application.getCpu_frequency(),application.getDisk_size(),application.getMem_size(),application.getNum_cpus());
+        Functions.filterTable(testTable,unlikeCSP,testEIS,application.getLatency(),application.getBudget());
+        ServiceTable filterTable = new ServiceTable();
+        filterTable.addAll(testTable);
+        Iterator<ServiceForm> iterator = testTable.iterator();
+        while (iterator.hasNext()) {
+            ServiceForm serviceForm = iterator.next();
+            if(!filterTable.checkSingleEISNumberOfCSP(serviceForm.getEis(),application.getNum_CSP_per_EIS())){
+                iterator.remove();
+            }
+        }
+        filterTable = new ServiceTable();
+        filterTable.addAll(testTable);
+        filterTable.orderListByLatency();
+        int n = filterTable.getList().size();
+        ServiceTable optimalComb = new ServiceTable();
+        double optimalLatency = -1;
+        double optimalCost = -1;
+        BinaryRepresent binaryRepresent1 = new BinaryRepresent(n,1);
+        binaryRepresent1.getBinaryRepresent()[0] = 1;
+        binaryRepresent1.setLatencySum(filterTable.getList().get(0).getLatency().getDelay());
+        BinaryRepresent binaryRepresent0 = new BinaryRepresent(n,1);
+        binaryRepresent0.getBinaryRepresent()[0] = 0;
+        binaryRepresent0.setLatencySum(filterTable.getList().get(1).getLatency().getDelay());
+        PriorityQueue<BinaryRepresent> minHeap = new PriorityQueue<>(Comparator.comparingDouble(s -> s.getLatencySum()));
+        minHeap.add(binaryRepresent0);
+        minHeap.add(binaryRepresent1);
+        int count = 0;
+        while(!minHeap.isEmpty()){
+            BinaryRepresent binaryRepresent = minHeap.poll();
+            ServiceTable cur = binaryRepresent.transfer(filterTable);
+            int preCount = binaryRepresent.getValidCount();
+            double preLatency = cur.getLatencySum();
+            int[] preArray = binaryRepresent.getBinaryRepresent();
+            int valid = cur.validBnB(application);
+            if(valid == 1){
+                optimalComb = cur;
+                optimalCost = optimalComb.newCalculateCost();
+                optimalLatency = optimalComb.calculateLatency();
+                break;
+            }
+            if(valid == -1){
+                continue;
+            }
+
+            if(valid == 0 && preCount < n){
+                BinaryRepresent select = new BinaryRepresent(Arrays.copyOf(preArray,preArray.length),preCount+1);
+                select.getBinaryRepresent()[preCount] = 1;
+                select.setLatencySum(preLatency+filterTable.getList().get(preCount).getLatency().getDelay());
+                minHeap.add(select);
+                if(preCount != n-1){
+                    BinaryRepresent unselect = new BinaryRepresent(Arrays.copyOf(preArray,preArray.length),preCount+1);
+                    unselect.getBinaryRepresent()[preCount] = 0;
+                    unselect.setLatencySum(preLatency+filterTable.getList().get(preCount+1).getLatency().getDelay());
+                    minHeap.add(unselect);
+                }
+            }
+        }
         return optimalComb;
     }
 }

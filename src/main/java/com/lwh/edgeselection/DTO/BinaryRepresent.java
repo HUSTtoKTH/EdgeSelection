@@ -18,6 +18,13 @@ public class BinaryRepresent {
     }
 
 
+    public BinaryRepresent(int[] binaryRepresent, int validCount) {
+        this.binaryRepresent = binaryRepresent;
+        latencySum = Double.MAX_VALUE;
+        this.validCount = validCount;
+    }
+
+
     public ServiceTable transfer(ServiceTable serviceTable){
         ServiceTable cur = new ServiceTable();
         for(int i = 0; i < validCount; i++){
