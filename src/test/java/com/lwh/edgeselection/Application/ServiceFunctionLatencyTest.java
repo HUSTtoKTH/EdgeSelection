@@ -17,75 +17,68 @@ import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class ServiceFunctionTest {
+class ServiceFunctionLatencyTest {
     @Autowired
     private ServiceFunctionLatency serviceFunctionLatency;
     @Autowired
     private ApplicationRepository applicationRepository;
 
     @Test
-    public void generateEIS() {
-        serviceFunctionLatency.generateEISWithLatency();
+    public void testSuit() throws IOException {
+        String path = "./2021-08-10/latency";
+        String application = "/application1";
+        bruteForce(path, application);
+        BestFit(path, application);
+
     }
 
     @Test
-    public void generateApp1() {
-        serviceFunctionLatency.generateApp1();
-    }
-
-    @Test
-    public void generateApp2() {
-        serviceFunctionLatency.generateApp2();
-    }
-
-    @Test
-    public void generateApp3() {
-        serviceFunctionLatency.generateApp3();
-    }
-
-    @Test
-    public void bruteForce() throws IOException {
+    public void bruteForce(String path, String applicatoin) throws IOException {
         List<Application> applications = applicationRepository.findAll();
         List<FormForExcel> excels = new ArrayList<>();
         for (Application application : applications) {
             excels.add(serviceFunctionLatency.bruteForce(application));
         }
-        Functions.writeExcel(excels, "./result/latency/bruteApp3.xlsx");
+        String filePath = path + applicatoin + "_bruteforce.xlsx";
+        Functions.writeExcel(excels, filePath);
     }
 
     @Test
-    public void BestFit() throws IOException {
+    public void BestFit(String path, String applicatoin) throws IOException {
         List<Application> applications = applicationRepository.findAll();
         List<FormForExcel> excels = new ArrayList<>();
         for (Application application : applications) {
             excels.add(serviceFunctionLatency.BestFit(application));
         }
-        Functions.writeExcel(excels, "./result/latency/BFApp3.xlsx");
+        String filePath = path + applicatoin + "_bestfit.xlsx";
+        Functions.writeExcel(excels, filePath);
     }
 
     @Test
-    public void MILP() throws IOException {
+    public void MILP(String path, String applicatoin) throws IOException {
         List<Application> applications = applicationRepository.findAll();
         List<FormForExcel> excels = new ArrayList<>();
         for (Application application : applications) {
             excels.add(serviceFunctionLatency.MILP(application));
         }
-        Functions.writeExcel(excels, "./7-18/BnBApp1complexv2.xlsx");
+        String filePath = path + applicatoin + "_BnB.xlsx";
+        Functions.writeExcel(excels, filePath);
     }
 
 
     @Test
-    public void MILPOptimal() throws IOException {
+    public void MILPOptimal(String path, String applicatoin) throws IOException {
         List<Application> applications = applicationRepository.findAll();
         List<FormForExcel> excels = new ArrayList<>();
         for (Application application : applications) {
             excels.add( serviceFunctionLatency.MILPV2(application));
         }
-        Functions.writeExcel(excels, "./7-18/BnBOptimalApp1complexv2.xlsx");
+        String filePath = path + applicatoin + "_BnBOptimize.xlsx";
+        Functions.writeExcel(excels, filePath);
     }
 
     @Test
-    public void cplexSolver() throws IOException, IloException {
+    public void cplexSolver(String path, String applicatoin) throws IOException, IloException {
         List<Application> applications = applicationRepository.findAll();
         List<FormForExcel> excels = new ArrayList<>();
         int i = 0;
@@ -97,7 +90,8 @@ class ServiceFunctionTest {
                 break;
             }
         }
-        Functions.writeExcel(excels, "./7-18/SolverApp1complexv2.xlsx");
+        String filePath = path + applicatoin + "_cplex.xlsx";
+        Functions.writeExcel(excels, filePath);
     }
 
 

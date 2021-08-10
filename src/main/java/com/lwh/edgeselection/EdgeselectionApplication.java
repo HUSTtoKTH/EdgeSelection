@@ -99,7 +99,7 @@ class BestFitV2 implements Callable<FormForExcel> {
 
     @Override
     public FormForExcel call() throws Exception {
-        return serviceFunctionCost.BestFitV2(application);
+        return serviceFunctionCost.ImprovedBestFit(application);
     }
 }
 
