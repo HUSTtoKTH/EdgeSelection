@@ -186,8 +186,10 @@ public class ApplicationService {
         List<CSP> csps = cspRepository.findAll();
         int i = 0;
         while(i < numOfApplication){
-            int numEIS = 1+(int)(Math.random()*3);
-            int numCSP = 1+(int)(Math.random()*3);
+//            int numEIS = 1+(int)(Math.random()*3);
+//            int numCSP = 1+(int)(Math.random()*3);
+            int numEIS = 3;
+            int numCSP = 3;
             double  budget = numEIS * Math.random() * 10 + numCSP*numEIS*Math.random() * 4;
             Application application = new Application(numEIS,numCSP, budget,Math.random()*70 + 40);
             application.addAll(areaRepository.findAll());

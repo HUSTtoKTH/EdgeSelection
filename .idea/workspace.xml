@@ -2,41 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a04c43-c494-46bc-938f-e4dcb4c16af8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_launcher_1_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_vintage_junit_vintage_engine_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-10/cost/application1_bestfit.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-10/cost/application1_bruteforce.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-10/cost/application1_cplex.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-10/cost/application1_improvedbestfit.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-10/cost/result.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application1_bestfit.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application1_bruteforce.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application1_cplex.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application1_improvedbestfit.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application2_bestfit.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application2_bruteforce.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application2_cplex.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application2_improvedbestfit.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application3_bestfit.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application3_bruteforce.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application3_cplex.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2021-08-11/cost/application3_improvedbestfit.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ApplicationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/lwh/edgeselection/Application/ServiceFunctionLatencyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/lwh/edgeselection/Application/ServiceGenerateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/cplex.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/cplex.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_0.75_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_0.7_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_0.85_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_0.8_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_0.95_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_0.9_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_1.0_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_1.1_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_1.2_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/latency/application1_ibf_1.3_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/reliability/application1_IBF_EIS1_CSP1_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/reliability/application1_IBF_EIS1_CSP2_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/reliability/application1_IBF_EIS1_CSP3_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/reliability/application1_IBF_EIS2_CSP1_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/reliability/application1_IBF_EIS2_CSP2_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/reliability/application1_IBF_EIS2_CSP3_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/reliability/application1_IBF_EIS3_CSP1_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/reliability/application1_IBF_EIS3_CSP2_improvedbestfit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021-08-11/reliability/application1_IBF_EIS3_CSP3_improvedbestfit.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edgeselection.iml" beforeDir="false" afterPath="$PROJECT_DIR$/edgeselection.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ApplicationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunctionCost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunctionCost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunctionLatency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunctionLatency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/EdgeselectionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/EdgeselectionApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/lwh/edgeselection/Application/ServiceFunctionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/lwh/edgeselection/Application/ServiceFunctionCostTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/lwh/edgeselection/Application/ServiceFunctionCostTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/lwh/edgeselection/Application/ServiceFunctionCostTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +55,18 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="MySQL - @localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - @localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="application3: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - @localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="cost_aware: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -132,7 +133,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../dumps/application1/application1_services_csps.tsv" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../dumps/application1/application1_apps_areas.tsv" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.28735632" />
@@ -162,8 +163,8 @@
       <recent name="C:\Users\exiwlen\Desktop\edgeselection\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServiceFunctionCostTest.testSuit">
-    <configuration name="ServiceFunctionCostTest.CplexSolver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ServiceFunctionCostTest.testReliability">
+    <configuration name="ServiceFunctionCostTest.testLatencyInfluenceCost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="edgeselection" />
       <extension name="coverage">
         <pattern>
@@ -173,7 +174,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.lwh.edgeselection.Application" />
       <option name="MAIN_CLASS_NAME" value="com.lwh.edgeselection.Application.ServiceFunctionCostTest" />
-      <option name="METHOD_NAME" value="CplexSolver(java.lang.String,java.lang.String)" />
+      <option name="METHOD_NAME" value="testLatencyInfluenceCost" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceFunctionCostTest.testReliability" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="edgeselection" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lwh.edgeselection.Application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lwh.edgeselection.Application" />
+      <option name="MAIN_CLASS_NAME" value="com.lwh.edgeselection.Application.ServiceFunctionCostTest" />
+      <option name="METHOD_NAME" value="testReliability" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -211,22 +228,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceGenerateTest.generateApp2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="edgeselection" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.lwh.edgeselection.Application.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.lwh.edgeselection.Application" />
-      <option name="MAIN_CLASS_NAME" value="com.lwh.edgeselection.Application.ServiceGenerateTest" />
-      <option name="METHOD_NAME" value="generateApp2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServiceGenerateTest.generateApp3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="edgeselection" />
       <extension name="coverage">
@@ -252,11 +253,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServiceFunctionCostTest.testReliability" />
+        <item itemvalue="JUnit.ServiceGenerateTest.generateApp1" />
+        <item itemvalue="JUnit.ServiceFunctionCostTest.testLatencyInfluenceCost" />
         <item itemvalue="JUnit.ServiceFunctionCostTest.testSuit" />
         <item itemvalue="JUnit.ServiceGenerateTest.generateApp3" />
-        <item itemvalue="JUnit.ServiceGenerateTest.generateApp2" />
-        <item itemvalue="JUnit.ServiceGenerateTest.generateApp1" />
-        <item itemvalue="JUnit.ServiceFunctionCostTest.CplexSolver" />
       </list>
     </recent_temporary>
   </component>
@@ -273,7 +274,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="MySQL - @localhost: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@66d4505e" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@4f0bb263" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
@@ -283,7 +284,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="MySQL - @localhost: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@fc3f73e" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@3ea1be6d" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -324,7 +325,7 @@
       <workItem from="1593425692768" duration="3415000" />
       <workItem from="1593566945389" duration="568000" />
       <workItem from="1594990416617" duration="41271000" />
-      <workItem from="1628512788659" duration="18024000" />
+      <workItem from="1628512788659" duration="23792000" />
     </task>
     <task id="LOCAL-00001" summary="basic analysis">
       <created>1581675551894</created>
@@ -388,42 +389,42 @@
       <screen x="0" y="0" width="2200" height="960" />
     </state>
     <state x="443" y="129" width="1319" height="676" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2200.960@0.0.2200.960" timestamp="1628528316404" />
-    <state x="749" y="261" width="438" height="505" key="FileChooserDialogImpl" timestamp="1628571659870">
+    <state x="749" y="261" width="438" height="505" key="FileChooserDialogImpl" timestamp="1628706227542">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state x="749" y="261" width="438" height="505" key="FileChooserDialogImpl/0.0.2200.960@0.0.2200.960" timestamp="1628571659870" />
-    <state width="1489" height="256" key="GridCell.Tab.0.bottom" timestamp="1628571665777">
+    <state x="749" y="261" width="438" height="505" key="FileChooserDialogImpl/0.0.2200.960@0.0.2200.960" timestamp="1628706227542" />
+    <state width="2157" height="274" key="GridCell.Tab.0.bottom" timestamp="1628707677860">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state width="1489" height="256" key="GridCell.Tab.0.bottom/0.0.2200.960@0.0.2200.960" timestamp="1628571665777" />
-    <state width="1489" height="256" key="GridCell.Tab.0.center" timestamp="1628571665776">
+    <state width="2157" height="274" key="GridCell.Tab.0.bottom/0.0.2200.960@0.0.2200.960" timestamp="1628707677860" />
+    <state width="2157" height="274" key="GridCell.Tab.0.center" timestamp="1628707677860">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state width="1489" height="256" key="GridCell.Tab.0.center/0.0.2200.960@0.0.2200.960" timestamp="1628571665776" />
-    <state width="1489" height="256" key="GridCell.Tab.0.left" timestamp="1628571665776">
+    <state width="2157" height="274" key="GridCell.Tab.0.center/0.0.2200.960@0.0.2200.960" timestamp="1628707677860" />
+    <state width="2157" height="274" key="GridCell.Tab.0.left" timestamp="1628707677860">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state width="1489" height="256" key="GridCell.Tab.0.left/0.0.2200.960@0.0.2200.960" timestamp="1628571665776" />
-    <state width="1489" height="256" key="GridCell.Tab.0.right" timestamp="1628571665776">
+    <state width="2157" height="274" key="GridCell.Tab.0.left/0.0.2200.960@0.0.2200.960" timestamp="1628707677860" />
+    <state width="2157" height="274" key="GridCell.Tab.0.right" timestamp="1628707677860">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state width="1489" height="256" key="GridCell.Tab.0.right/0.0.2200.960@0.0.2200.960" timestamp="1628571665776" />
-    <state width="2157" height="316" key="GridCell.Tab.1.bottom" timestamp="1628543889314">
+    <state width="2157" height="274" key="GridCell.Tab.0.right/0.0.2200.960@0.0.2200.960" timestamp="1628707677860" />
+    <state width="2157" height="276" key="GridCell.Tab.1.bottom" timestamp="1628705118041">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state width="2157" height="316" key="GridCell.Tab.1.bottom/0.0.2200.960@0.0.2200.960" timestamp="1628543889314" />
-    <state width="2157" height="316" key="GridCell.Tab.1.center" timestamp="1628543889314">
+    <state width="2157" height="276" key="GridCell.Tab.1.bottom/0.0.2200.960@0.0.2200.960" timestamp="1628705118041" />
+    <state width="2157" height="276" key="GridCell.Tab.1.center" timestamp="1628705118041">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state width="2157" height="316" key="GridCell.Tab.1.center/0.0.2200.960@0.0.2200.960" timestamp="1628543889314" />
-    <state width="2157" height="316" key="GridCell.Tab.1.left" timestamp="1628543889314">
+    <state width="2157" height="276" key="GridCell.Tab.1.center/0.0.2200.960@0.0.2200.960" timestamp="1628705118041" />
+    <state width="2157" height="276" key="GridCell.Tab.1.left" timestamp="1628705118041">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state width="2157" height="316" key="GridCell.Tab.1.left/0.0.2200.960@0.0.2200.960" timestamp="1628543889314" />
-    <state width="2157" height="316" key="GridCell.Tab.1.right" timestamp="1628543889314">
+    <state width="2157" height="276" key="GridCell.Tab.1.left/0.0.2200.960@0.0.2200.960" timestamp="1628705118041" />
+    <state width="2157" height="276" key="GridCell.Tab.1.right" timestamp="1628705118041">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state width="2157" height="316" key="GridCell.Tab.1.right/0.0.2200.960@0.0.2200.960" timestamp="1628543889314" />
+    <state width="2157" height="276" key="GridCell.Tab.1.right/0.0.2200.960@0.0.2200.960" timestamp="1628705118041" />
     <state width="218" height="477" key="HiddenNamespacesPopup" timestamp="1628529358239">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
@@ -432,26 +433,26 @@
       <screen x="0" y="0" width="2200" height="960" />
     </state>
     <state x="604" y="116" key="SettingsEditor/0.0.2200.960@0.0.2200.960" timestamp="1628525095494" />
-    <state x="948" y="373" width="331" height="226" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1628538928536">
+    <state x="948" y="373" width="331" height="226" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1628706522187">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state x="948" y="373" width="331" height="226" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.2200.960@0.0.2200.960" timestamp="1628538928536" />
-    <state x="968" y="193" width="310" height="574" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1628533832771">
+    <state x="948" y="373" width="331" height="226" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.2200.960@0.0.2200.960" timestamp="1628706522187" />
+    <state x="968" y="193" width="310" height="595" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1628705758517">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state x="968" y="193" width="310" height="574" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog/0.0.2200.960@0.0.2200.960" timestamp="1628533832771" />
-    <state x="681" y="139" width="1104" height="683" key="com.intellij.database.dbimport.ImportDialog" timestamp="1628571660945">
+    <state x="968" y="193" width="310" height="595" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog/0.0.2200.960@0.0.2200.960" timestamp="1628705758517" />
+    <state x="681" y="139" width="1104" height="683" key="com.intellij.database.dbimport.ImportDialog" timestamp="1628706228702">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state x="681" y="139" width="1104" height="683" key="com.intellij.database.dbimport.ImportDialog/0.0.2200.960@0.0.2200.960" timestamp="1628571660945" />
+    <state x="681" y="139" width="1104" height="683" key="com.intellij.database.dbimport.ImportDialog/0.0.2200.960@0.0.2200.960" timestamp="1628706228702" />
     <state x="831" y="289" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1628528220916">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
     <state x="831" y="289" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.2200.960@0.0.2200.960" timestamp="1628528220916" />
-    <state x="817" y="129" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1628529216309">
+    <state x="817" y="129" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1628705712000">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
-    <state x="817" y="129" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.2200.960@0.0.2200.960" timestamp="1628529216309" />
+    <state x="817" y="129" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.2200.960@0.0.2200.960" timestamp="1628705712000" />
     <state x="977" y="233" key="com.intellij.database.view.ui.DbObjectDialog" timestamp="1628528473870">
       <screen x="0" y="0" width="2200" height="960" />
     </state>
@@ -467,13 +468,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ApplicationService.java</url>
-          <line>257</line>
+          <line>259</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ApplicationService.java</url>
-          <line>223</line>
+          <line>225</line>
           <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="application.id==37" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/test/java/com/lwh/edgeselection/Application/ServiceFunctionCostTest.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/lwh/edgeselection/Application/ServiceFunctionCost.java</url>
+          <line>279</line>
+          <option name="timeStamp" value="66" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -34,10 +34,30 @@ class ServiceFunctionCostTest {
     }
 
     @Test
-    public void testLatency() throws IOException, IloException {
-        String path = "./2021-08-11/cost";
-        String application = "/application3";
-        ImprovedBestFit(path, application);
+    public void testLatencyInfluenceCost() throws IOException, IloException {
+        String path = "./2021-08-11/latency";
+
+        double[] list = new double[]{0.95, 0.85};
+        for (double i : list) {
+            List<Application> applications = applicationRepository.findAll();
+            serviceFunctionCost.updateLatency(applications, i);
+            String name = "/application1_ibf_"+i;
+            ImprovedBestFit(path, name, applications);
+        }
+
+    }
+
+    @Test
+    public void testReliability() throws IOException, IloException {
+        String path = "./2021-08-11/reliability";
+        for (int i =1; i<=3; i++) {
+            for (int j = 1; j <=3; j++) {
+                List<Application> applications = applicationRepository.findAll();
+                serviceFunctionCost.updateReliability(applications, i, j);
+                String name = "/application1_IBF_EIS"+i+"_CSP"+j;
+                ImprovedBestFit(path, name, applications);
+            }
+        }
     }
 
     @Test
@@ -73,6 +93,16 @@ class ServiceFunctionCostTest {
         Functions.writeExcel(excels, filePath);
     }
 
+
+    @Test
+    public void ImprovedBestFit(String path, String applicatoin, List<Application> applications) throws IOException {
+        List<FormForExcel> excels = new ArrayList<>();
+        for (Application application : applications) {
+            excels.add(serviceFunctionCost.ImprovedBestFit(application));
+        }
+        String filePath = path + applicatoin + "_improvedbestfit.xlsx";
+        Functions.writeExcel(excels, filePath);
+    }
 
     @Test
     public void CplexSolver(String path, String applicatoin) throws IOException, IloException {

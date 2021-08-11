@@ -282,6 +282,11 @@ public class ServiceFunctionCost {
         formForExcel.setNumberOfCSP(filterTable.getUsedCSP().size());
         formForExcel.setNumberOfallservice(filterTable.getList().size());
         sw.stop();
+        if (filterTable.getList().size() == 0 || filterTable.getUsedEIS().size() < application.getNum_EIS_per_Country()
+        || filterTable.getUsedCSP().size() < application.getNum_CSP_per_EIS()
+        ) {
+            return formForExcel;
+        }
         sw.start("best fit algorithm");
         ServiceTable optimalComb = new ServiceTable();
         double optimalcost = -1;
@@ -433,6 +438,19 @@ public class ServiceFunctionCost {
             applicationRepository.save(application);
         }
         System.out.println("Updated");
+    }
+
+    public void updateLatency(List<Application> applications, double i) {
+        for(Application application:applications) {
+            application.setLatency(application.getLatency()*i);
+        }
+    }
+
+    public void updateReliability(List<Application> applications, int EIS, int CSP) {
+        for(Application application:applications) {
+            application.setNum_CSP_per_EIS(CSP);
+            application.setNum_EIS_per_Country(EIS);
+        }
     }
 
     public void updateReliability(int low, int up) {
